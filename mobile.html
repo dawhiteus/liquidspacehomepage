@@ -19,11 +19,12 @@
     .nav-menu-btn { background: none; border: none; padding: 6px; cursor: pointer; display: flex; align-items: center; }
 
     /* ── HERO ── */
-    .hero { padding: 44px 20px 36px; text-align: center; background: linear-gradient(160deg, #F0F9F7 0%, #fff 65%); position: relative; overflow: hidden; }
-    .hero::before { content: ''; position: absolute; top: -60px; right: -80px; width: 300px; height: 300px; border-radius: 50%; background: radial-gradient(circle, rgba(161,222,210,0.22) 0%, transparent 70%); pointer-events: none; }
+    .hero { padding: 44px 20px 36px; text-align: center; background: linear-gradient(160deg, #EFF8F6 0%, #F5FBFF 50%, #fff 80%), url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='1' cy='1' r='1' fill='%2300293A' fill-opacity='0.055'/%3E%3C/svg%3E"); position: relative; overflow: hidden; }
+    .hero::before { content: ''; position: absolute; top: -80px; right: -100px; width: 360px; height: 360px; border-radius: 50%; background: radial-gradient(circle, rgba(161,222,210,0.28) 0%, transparent 65%); pointer-events: none; }
+    .hero::after { content: ''; position: absolute; bottom: -60px; left: -80px; width: 280px; height: 280px; border-radius: 50%; background: radial-gradient(circle, rgba(186,223,147,0.20) 0%, transparent 65%); pointer-events: none; }
     .eyebrow { font-size: 10px; font-weight: 700; letter-spacing: 1.8px; text-transform: uppercase; color: #00609C; margin-bottom: 12px; }
     .hero-h1 { font-size: 34px; font-weight: 700; line-height: 1.08; letter-spacing: -1px; color: #00293A; margin-bottom: 14px; }
-    .hero-sub { font-size: 15px; color: #4A6572; line-height: 1.55; max-width: 320px; margin: 0 auto 28px; }
+    .hero-sub { font-size: 15px; font-weight: 300; color: #5B6670; line-height: 1.55; max-width: 320px; margin: 0 auto 28px; }
 
     /* ── SEARCH CARD ── */
     .search-card { background: #fff; border-radius: 16px; box-shadow: 0 2px 16px rgba(0,0,0,0.10), 0 0 0 1px rgba(0,41,58,0.06); overflow: hidden; margin: 0 0 16px; }
@@ -44,38 +45,38 @@
 
     /* ── TRUST ── */
     .trust { background: #E8F2F6; padding: 28px 0; border-bottom: 1px solid #D0E4EC; }
-    .trust-label { font-size: 9px; font-weight: 700; letter-spacing: 1.4px; text-transform: uppercase; color: #6B8FA0; text-align: center; margin-bottom: 20px; padding: 0 20px; line-height: 1.5; }
+    .trust-label { font-size: 9px; font-weight: 700; letter-spacing: 1.4px; text-transform: uppercase; color: rgba(0,41,58,0.6); text-align: center; margin-bottom: 20px; padding: 0 20px; line-height: 1.5; }
     .trust-logos-outer { overflow: hidden; }
     .trust-logos { display: flex; gap: 48px; padding: 0; align-items: center; width: max-content; animation: marquee 22s linear infinite; }
     .trust-logos:hover { animation-play-state: paused; }
     @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
-    .trust-logo-text { font-size: 15px; font-weight: 700; color: #6B8FA0; opacity: 0.7; white-space: nowrap; flex-shrink: 0; letter-spacing: -0.3px; }
+    .trust-logo-text { font-size: 15px; font-weight: 700; color: rgba(0,41,58,0.42); white-space: nowrap; flex-shrink: 0; letter-spacing: -0.3px; }
 
     /* ── SHARED SECTION STYLES ── */
     .section { padding: 44px 20px; border-bottom: 1px solid #F0F2F4; }
-    .section.alt { background: #F8FAFB; }
+    .section.alt { background: #F7F8F9; }
     .section-eyebrow { font-size: 10px; font-weight: 700; letter-spacing: 1.6px; text-transform: uppercase; color: #00609C; margin-bottom: 10px; }
-    .section-h2 { font-size: 26px; font-weight: 700; letter-spacing: -0.5px; line-height: 1.15; margin-bottom: 12px; }
-    .section-sub { font-size: 15px; color: #4A6572; line-height: 1.55; margin-bottom: 24px; }
+    .section-h2 { font-size: 28px; font-weight: 700; letter-spacing: -0.5px; line-height: 1.15; margin-bottom: 12px; }
+    .section-sub { font-size: 15px; font-weight: 300; color: #5B6670; line-height: 1.55; margin-bottom: 24px; }
     .text-link { font-size: 14px; font-weight: 600; color: #00609C; display: inline-block; margin-top: 4px; }
 
     /* ── WTYPES ── */
     .card-grid { display: flex; flex-direction: column; gap: 14px; margin-top: 24px; }
-    .card { background: #fff; border: 1px solid #E8EAEC; border-radius: 14px; padding: 20px; }
+    .card { background: #fff; border: 1px solid #E8EAEC; border-radius: 12px; padding: 24px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
     .card-title { font-size: 16px; font-weight: 700; margin-bottom: 8px; }
-    .card-body { font-size: 14px; color: #4A6572; line-height: 1.5; margin-bottom: 14px; }
+    .card-body { font-size: 14px; font-weight: 300; color: #5B6670; line-height: 1.5; margin-bottom: 14px; }
     .card-link { font-size: 14px; font-weight: 600; color: #00609C; }
 
     /* ── PLATFORM ── */
     .layers { display: flex; flex-direction: column; gap: 16px; margin-top: 24px; }
-    .layer { background: #fff; border: 1px solid #E8EAEC; border-radius: 14px; padding: 20px; position: relative; overflow: hidden; }
+    .layer { background: #fff; border: 1px solid #E8EAEC; border-radius: 12px; padding: 20px 20px 20px 28px; position: relative; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
     .layer::before { content: ''; position: absolute; top: 0; left: 0; bottom: 0; width: 4px; }
     .l1::before { background: #A1DED2; }
-    .l2::before { background: #BADF93; }
-    .l3::before { background: #00609C; }
+    .l2::before { background: #A1DED2; }
+    .l3::before { background: #A1DED2; }
     .layer-num { font-size: 10px; font-weight: 700; letter-spacing: 1.4px; text-transform: uppercase; color: #9AA2A8; margin-bottom: 6px; }
     .layer-h { font-size: 16px; font-weight: 700; margin-bottom: 8px; }
-    .layer-b { font-size: 14px; color: #4A6572; line-height: 1.5; }
+    .layer-b { font-size: 14px; font-weight: 300; color: #5B6670; line-height: 1.5; }
     .flywheel-note { background: #00293A; border-radius: 14px; padding: 20px; margin-top: 16px; }
     .flywheel-label { font-size: 13px; font-weight: 700; color: #A1DED2; margin-bottom: 8px; }
     .flywheel-seq { font-size: 12px; color: #7A9BA8; line-height: 1.5; margin-bottom: 14px; }
@@ -83,26 +84,26 @@
 
     /* ── SOLUTIONS ── */
     .sol-pills { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 20px; }
-    .sol-pill { font-size: 13px; font-weight: 600; color: #00609C; border: 1.5px solid #B8D8E8; border-radius: 20px; padding: 8px 16px; background: #EEF7FB; white-space: nowrap; }
+    .sol-pill { font-size: 13px; font-weight: 600; color: #00609C; border: 1.5px solid #D0E4EC; border-radius: 20px; padding: 8px 16px; background: #fff; white-space: nowrap; }
 
     /* ── PROOF ── */
     .quotes { display: flex; flex-direction: column; gap: 16px; margin-top: 24px; }
-    .quote { background: #fff; border: 1px solid #E8EAEC; border-radius: 14px; padding: 20px; }
-    .quote-text { font-size: 15px; line-height: 1.6; color: #00293A; margin-bottom: 16px; font-style: italic; }
+    .quote { background: #fff; border: 1px solid #E8EAEC; border-radius: 16px; padding: 24px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
+    .quote-text { font-size: 15px; font-weight: 300; line-height: 1.6; color: #00293A; margin-bottom: 16px; }
     .quote-footer { display: flex; align-items: center; gap: 12px; }
     .quote-avatar { width: 40px; height: 40px; border-radius: 50%; background: #E8F2F6; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; color: #00609C; flex-shrink: 0; }
     .quote-attr { font-size: 13px; font-weight: 600; color: #00293A; }
     .quote-co { font-size: 12px; color: #9AA2A8; margin-top: 2px; }
 
     /* ── OPERATORS ── */
-    .operators-card { background: #00293A; border-radius: 16px; padding: 28px 24px; color: #fff; }
-    .operators-h2 { font-size: 26px; font-weight: 700; letter-spacing: -0.5px; line-height: 1.15; margin-bottom: 12px; color: #fff; }
-    .operators-body { font-size: 15px; color: #A1B8C2; line-height: 1.55; margin-bottom: 24px; }
+    .section.operators-section { background: #00293A; border-bottom: none; }
+    .operators-h2 { font-size: 28px; font-weight: 700; letter-spacing: -0.5px; line-height: 1.15; margin-bottom: 12px; color: #fff; }
+    .operators-body { font-size: 15px; font-weight: 300; color: rgba(161,184,194,0.9); line-height: 1.55; margin-bottom: 24px; }
     .btn-operator { display: inline-block; padding: 13px 24px; background: #A1DED2; color: #00293A; border-radius: 10px; font-size: 15px; font-weight: 700; }
 
     /* ── RESOURCES ── */
     .res-cards { display: flex; flex-direction: column; gap: 16px; margin-top: 24px; }
-    .res-card { background: #fff; border: 1px solid #E8EAEC; border-radius: 14px; overflow: hidden; display: block; color: #00293A; }
+    .res-card { background: #fff; border: 1px solid #E8EAEC; border-radius: 12px; overflow: hidden; display: block; color: #00293A; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
     .res-card-img { height: 160px; display: flex; align-items: flex-end; padding: 16px; position: relative; overflow: hidden; }
     .res-card-img-tag { font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; padding: 5px 10px; border-radius: 20px; background: rgba(255,255,255,0.75); backdrop-filter: blur(4px); color: #00293A; position: relative; z-index: 1; }
     .res-img-1 { background: linear-gradient(135deg, #A1DED2 0%, #6BBFB0 100%); }
@@ -111,32 +112,32 @@
     .res-card-body { padding: 16px; }
     .res-read-time { font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: #9AA2A8; margin-bottom: 6px; }
     .res-title { font-size: 15px; font-weight: 700; line-height: 1.35; margin-bottom: 8px; }
-    .res-excerpt { font-size: 13px; color: #4A6572; line-height: 1.5; margin-bottom: 10px; }
+    .res-excerpt { font-size: 13px; font-weight: 300; color: #5B6670; line-height: 1.5; margin-bottom: 10px; }
     .res-link { font-size: 13px; font-weight: 600; color: #00609C; }
     .resources-more { display: inline-block; margin-top: 20px; font-size: 14px; font-weight: 600; color: #00609C; }
 
     /* ── CTA ── */
-    .cta-section { background: linear-gradient(135deg, #00293A 0%, #004A6E 100%); padding: 44px 20px; text-align: center; }
-    .cta-h2 { font-size: 28px; font-weight: 700; color: #fff; letter-spacing: -0.5px; line-height: 1.15; margin-bottom: 14px; }
-    .cta-sub { font-size: 15px; color: #A1B8C2; line-height: 1.55; margin-bottom: 28px; }
+    .cta-section { background: #E8F2F6; border-top: 1px solid #C8DCEA; padding: 52px 20px; text-align: center; }
+    .cta-h2 { font-size: 28px; font-weight: 700; color: #00293A; letter-spacing: -0.5px; line-height: 1.15; margin-bottom: 14px; }
+    .cta-sub { font-size: 15px; font-weight: 300; color: #5B6670; line-height: 1.6; margin-bottom: 32px; }
     .cta-btns { display: flex; flex-direction: column; gap: 12px; }
     .btn-p { display: block; padding: 15px; background: #00609C; color: #fff; border-radius: 12px; font-size: 16px; font-weight: 700; text-align: center; }
-    .btn-g { display: block; padding: 15px; background: rgba(255,255,255,0.12); color: #fff; border-radius: 12px; font-size: 16px; font-weight: 700; text-align: center; border: 1.5px solid rgba(255,255,255,0.25); }
+    .btn-g { display: block; padding: 15px; background: #fff; color: #00293A; border-radius: 12px; font-size: 16px; font-weight: 700; text-align: center; border: 1.5px solid #C8DCEA; }
 
     /* ── FOOTER ── */
-    .footer { padding: 36px 20px; background: #fff; border-top: 1px solid #E8EAEC; }
-    .footer-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 28px; }
-    .footer-brand { font-size: 16px; font-weight: 700; color: #00293A; }
-    .footer-social a { font-size: 13px; font-weight: 600; color: #4A6572; margin-left: 16px; }
-    .footer-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 24px 16px; margin-bottom: 28px; }
-    .footer-col h4 { font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: #9AA2A8; margin-bottom: 10px; }
+    .footer { padding: 44px 20px 32px; background: #00293A; }
+    .footer-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 32px; }
+    .footer-brand { font-size: 16px; font-weight: 700; color: #fff; }
+    .footer-social a { font-size: 13px; font-weight: 600; color: rgba(255,255,255,0.6); margin-left: 16px; }
+    .footer-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 28px 16px; margin-bottom: 32px; }
+    .footer-col h4 { font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: rgba(255,255,255,0.4); margin-bottom: 12px; }
     .footer-col ul { list-style: none; }
-    .footer-col li { margin-bottom: 8px; }
-    .footer-col a { font-size: 14px; color: #4A6572; }
-    .footer-bottom { border-top: 1px solid #F0F2F4; padding-top: 20px; display: flex; flex-direction: column; gap: 8px; }
-    .footer-copy { font-size: 12px; color: #9AA2A8; }
+    .footer-col li { margin-bottom: 10px; }
+    .footer-col a { font-size: 14px; color: rgba(255,255,255,0.65); }
+    .footer-bottom { border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px; display: flex; flex-direction: column; gap: 8px; }
+    .footer-copy { font-size: 12px; color: rgba(255,255,255,0.35); }
     .footer-legal { display: flex; gap: 16px; }
-    .footer-legal a { font-size: 12px; color: #9AA2A8; }
+    .footer-legal a { font-size: 12px; color: rgba(255,255,255,0.35); }
 
     /* ── BOTTOM SHEETS ── */
     .sheet-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.45); z-index: 300; backdrop-filter: blur(2px); }
@@ -377,12 +378,10 @@
   </section>
 
   <!-- OPERATORS -->
-  <section class="section">
-    <div class="operators-card">
-      <h2 class="operators-h2">Better spaces<br>in more places.</h2>
-      <p class="operators-body">Got extra space? Join the largest marketplace of flexible and dedicated office space. List by the hour, day, or longer — and connect with enterprise customers.</p>
-      <a href="#" class="btn-operator">List your workspace</a>
-    </div>
+  <section class="section operators-section">
+    <h2 class="operators-h2">Better spaces<br>in more places.</h2>
+    <p class="operators-body">Got extra space? Join the largest marketplace of flexible and dedicated office space. List by the hour, day, or longer — and connect with enterprise customers.</p>
+    <a href="#" class="btn-operator">List your workspace</a>
   </section>
 
   <!-- RESOURCES -->
