@@ -101,7 +101,11 @@
     /* ── RESOURCES ── */
     .res-cards { display: flex; flex-direction: column; gap: 16px; margin-top: 24px; }
     .res-card { background: #fff; border: 1px solid #E8EAEC; border-radius: 14px; overflow: hidden; display: block; color: #00293A; }
-    .res-card-img { height: 140px; background: linear-gradient(135deg, #E8F2F6 0%, #D0E8E4 100%); }
+    .res-card-img { height: 160px; display: flex; align-items: flex-end; padding: 16px; position: relative; overflow: hidden; }
+    .res-card-img-tag { font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; padding: 5px 10px; border-radius: 20px; background: rgba(255,255,255,0.75); backdrop-filter: blur(4px); color: #00293A; position: relative; z-index: 1; }
+    .res-img-1 { background: linear-gradient(135deg, #A1DED2 0%, #6BBFB0 100%); }
+    .res-img-2 { background: linear-gradient(135deg, #BADF93 0%, #8DC96A 100%); }
+    .res-img-3 { background: linear-gradient(135deg, #B8D8E8 0%, #7AAFCC 100%); }
     .res-card-body { padding: 16px; }
     .res-read-time { font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: #9AA2A8; margin-bottom: 6px; }
     .res-title { font-size: 15px; font-weight: 700; line-height: 1.35; margin-bottom: 8px; }
@@ -157,23 +161,24 @@
 
     /* Calendar */
     .dp-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; }
-    .dp-nav { background: none; border: 1.5px solid #E5E7EA; border-radius: 8px; width: 36px; height: 36px; font-size: 18px; cursor: pointer; display: flex; align-items: center; justify-content: center; color: #00293A; }
-    .dp-month { font-size: 16px; font-weight: 700; }
-    .dp-grid { display: grid; grid-template-columns: repeat(7,1fr); gap: 4px; margin-bottom: 16px; }
-    .dp-dow { font-size: 11px; font-weight: 700; text-align: center; color: #9AA2A8; padding: 4px 0; }
-    .dp-day { aspect-ratio: 1; display: flex; align-items: center; justify-content: center; font-size: 14px; border-radius: 8px; cursor: pointer; color: #00293A; -webkit-tap-highlight-color: transparent; }
+    .dp-nav { background: none; border: 1.5px solid #E5E7EA; border-radius: 10px; width: 44px; height: 44px; font-size: 20px; cursor: pointer; display: flex; align-items: center; justify-content: center; color: #00293A; -webkit-tap-highlight-color: transparent; }
+    .dp-month { font-size: 17px; font-weight: 700; }
+    .dp-grid { display: grid; grid-template-columns: repeat(7,1fr); gap: 2px; margin-bottom: 12px; }
+    .dp-dow { font-size: 11px; font-weight: 700; text-align: center; color: #9AA2A8; padding: 6px 0; }
+    .dp-day { height: 44px; display: flex; align-items: center; justify-content: center; font-size: 16px; border-radius: 10px; cursor: pointer; color: #00293A; -webkit-tap-highlight-color: transparent; transition: background 0.1s; }
+    .dp-day:active:not(.past):not(.empty) { background: #E8F2F6; }
     .dp-day.today { font-weight: 700; color: #00609C; }
     .dp-day.selected { background: #00609C; color: #fff; font-weight: 700; }
-    .dp-day.past { color: #CDD1D5; pointer-events: none; }
+    .dp-day.past { color: #D8DDE0; pointer-events: none; }
     .dp-day.empty { pointer-events: none; }
     .dp-time-section { border-top: 1px solid #F0F2F4; padding-top: 16px; margin-top: 4px; }
-    .dp-time-toggle { display: flex; align-items: center; justify-content: space-between; cursor: pointer; padding: 4px 0 10px; }
-    .dp-time-lbl { font-size: 12px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: #9AA2A8; }
-    .dp-time-chevron { color: #9AA2A8; transition: transform 0.15s; }
+    .dp-time-toggle { display: flex; align-items: center; justify-content: space-between; cursor: pointer; padding: 6px 0 12px; -webkit-tap-highlight-color: transparent; }
+    .dp-time-lbl { font-size: 13px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: #9AA2A8; }
+    .dp-time-chevron { color: #9AA2A8; transition: transform 0.15s; font-size: 16px; }
     .dp-time-chevron.open { transform: rotate(180deg); }
     .dp-time-body { display: none; }
     .dp-time-body.open { display: block; }
-    .dp-time-select { width: 100%; padding: 12px 14px; font-size: 15px; font-family: 'DM Sans', Arial, sans-serif; border: 1.5px solid #CDD1D5; border-radius: 10px; color: #00293A; background: #fff; }
+    .dp-time-select { width: 100%; padding: 14px 16px; font-size: 16px; font-family: 'DM Sans', Arial, sans-serif; border: 1.5px solid #CDD1D5; border-radius: 12px; color: #00293A; background: #fff; }
 
     /* Space type */
     .st-section-label { font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: #9AA2A8; margin-bottom: 12px; }
@@ -373,7 +378,7 @@
     <h2 class="section-h2">Thought leadership for CRE strategy at scale.</h2>
     <div class="res-cards">
       <a href="#" class="res-card">
-        <div class="res-card-img"></div>
+        <div class="res-card-img res-img-1"><span class="res-card-img-tag">Portfolio Strategy</span></div>
         <div class="res-card-body">
           <div class="res-read-time">4 min read</div>
           <div class="res-title">The forecast is broken. Your lease doesn't know that yet.</div>
@@ -382,7 +387,7 @@
         </div>
       </a>
       <a href="#" class="res-card">
-        <div class="res-card-img" style="background:linear-gradient(135deg,#D0E8E4 0%,#E8F2F6 100%);"></div>
+        <div class="res-card-img res-img-2"><span class="res-card-img-tag">Product News</span></div>
         <div class="res-card-body">
           <div class="res-read-time">4 min read</div>
           <div class="res-title">LiquidSpace introduces License Administrator, the command center for flexible office.</div>
@@ -391,7 +396,7 @@
         </div>
       </a>
       <a href="#" class="res-card">
-        <div class="res-card-img" style="background:linear-gradient(135deg,#EEF7FB 0%,#D0E4EC 100%);"></div>
+        <div class="res-card-img res-img-3"><span class="res-card-img-tag">CRE Leadership</span></div>
         <div class="res-card-body">
           <div class="res-read-time">4 min read</div>
           <div class="res-title">Four lies CRE leaders tell themselves — and the truth that sets them free.</div>
