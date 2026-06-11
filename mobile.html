@@ -45,8 +45,10 @@
     /* ── TRUST ── */
     .trust { background: #E8F2F6; padding: 28px 0; border-bottom: 1px solid #D0E4EC; }
     .trust-label { font-size: 9px; font-weight: 700; letter-spacing: 1.4px; text-transform: uppercase; color: #6B8FA0; text-align: center; margin-bottom: 20px; padding: 0 20px; line-height: 1.5; }
-    .trust-logos { display: flex; gap: 36px; padding: 0 24px; overflow-x: auto; scrollbar-width: none; -webkit-overflow-scrolling: touch; align-items: center; }
-    .trust-logos::-webkit-scrollbar { display: none; }
+    .trust-logos-outer { overflow: hidden; }
+    .trust-logos { display: flex; gap: 48px; padding: 0; align-items: center; width: max-content; animation: marquee 22s linear infinite; }
+    .trust-logos:hover { animation-play-state: paused; }
+    @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
     .trust-logo-text { font-size: 15px; font-weight: 700; color: #6B8FA0; opacity: 0.7; white-space: nowrap; flex-shrink: 0; letter-spacing: -0.3px; }
 
     /* ── SHARED SECTION STYLES ── */
@@ -247,15 +249,26 @@
   <!-- TRUST -->
   <div class="trust">
     <div class="trust-label">Trusted by corporate real estate teams at the world's top enterprises</div>
-    <div class="trust-logos">
-      <span class="trust-logo-text">AT&amp;T</span>
-      <span class="trust-logo-text">Allstate</span>
-      <span class="trust-logo-text">Spotify</span>
-      <span class="trust-logo-text">Airbnb</span>
-      <span class="trust-logo-text">Uber</span>
-      <span class="trust-logo-text">Microsoft</span>
-      <span class="trust-logo-text">Meta</span>
-      <span class="trust-logo-text">Nike</span>
+    <div class="trust-logos-outer">
+      <div class="trust-logos" aria-hidden="true">
+        <span class="trust-logo-text">AT&amp;T</span>
+        <span class="trust-logo-text">Allstate</span>
+        <span class="trust-logo-text">Spotify</span>
+        <span class="trust-logo-text">Airbnb</span>
+        <span class="trust-logo-text">Uber</span>
+        <span class="trust-logo-text">Microsoft</span>
+        <span class="trust-logo-text">Meta</span>
+        <span class="trust-logo-text">Nike</span>
+        <!-- duplicate for seamless loop -->
+        <span class="trust-logo-text">AT&amp;T</span>
+        <span class="trust-logo-text">Allstate</span>
+        <span class="trust-logo-text">Spotify</span>
+        <span class="trust-logo-text">Airbnb</span>
+        <span class="trust-logo-text">Uber</span>
+        <span class="trust-logo-text">Microsoft</span>
+        <span class="trust-logo-text">Meta</span>
+        <span class="trust-logo-text">Nike</span>
+      </div>
     </div>
   </div>
 
