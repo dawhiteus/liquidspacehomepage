@@ -10,59 +10,24 @@
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html, body { font-family: 'DM Sans', Arial, sans-serif; color: #00293A; background: #fff; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+    a { text-decoration: none; }
 
     /* ── NAV ── */
-    .nav {
-      display: flex; align-items: center; justify-content: space-between;
-      height: 56px; padding: 0 20px;
-      background: #fff; border-bottom: 1px solid #E8EAEC;
-      position: sticky; top: 0; z-index: 200;
-    }
-    .nav-logo { display: flex; align-items: center; gap: 8px; text-decoration: none; }
-    .nav-logo svg { width: 32px; height: 32px; }
+    .nav { display: flex; align-items: center; justify-content: space-between; height: 56px; padding: 0 20px; background: #fff; border-bottom: 1px solid #E8EAEC; position: sticky; top: 0; z-index: 200; }
+    .nav-logo { display: flex; align-items: center; gap: 8px; }
     .nav-logo-text { font-size: 15px; font-weight: 700; color: #00293A; letter-spacing: -0.3px; }
     .nav-menu-btn { background: none; border: none; padding: 6px; cursor: pointer; display: flex; align-items: center; }
 
     /* ── HERO ── */
-    .hero {
-      padding: 44px 20px 0;
-      text-align: center;
-      background: linear-gradient(160deg, #F0F9F7 0%, #fff 60%);
-      position: relative; overflow: hidden;
-    }
-    .hero::before {
-      content: ''; position: absolute; top: -60px; right: -80px;
-      width: 300px; height: 300px; border-radius: 50%;
-      background: radial-gradient(circle, rgba(161,222,210,0.22) 0%, transparent 70%);
-      pointer-events: none;
-    }
-    .hero-eyebrow {
-      font-size: 10px; font-weight: 700; letter-spacing: 1.8px;
-      text-transform: uppercase; color: #00609C; margin-bottom: 12px;
-    }
-    .hero-h1 {
-      font-size: 34px; font-weight: 700; line-height: 1.08;
-      letter-spacing: -1px; color: #00293A; margin-bottom: 14px;
-    }
-    .hero-sub {
-      font-size: 15px; color: #4A6572; line-height: 1.55;
-      max-width: 320px; margin: 0 auto 28px;
-    }
+    .hero { padding: 44px 20px 36px; text-align: center; background: linear-gradient(160deg, #F0F9F7 0%, #fff 65%); position: relative; overflow: hidden; }
+    .hero::before { content: ''; position: absolute; top: -60px; right: -80px; width: 300px; height: 300px; border-radius: 50%; background: radial-gradient(circle, rgba(161,222,210,0.22) 0%, transparent 70%); pointer-events: none; }
+    .eyebrow { font-size: 10px; font-weight: 700; letter-spacing: 1.8px; text-transform: uppercase; color: #00609C; margin-bottom: 12px; }
+    .hero-h1 { font-size: 34px; font-weight: 700; line-height: 1.08; letter-spacing: -1px; color: #00293A; margin-bottom: 14px; }
+    .hero-sub { font-size: 15px; color: #4A6572; line-height: 1.55; max-width: 320px; margin: 0 auto 28px; }
 
     /* ── SEARCH CARD ── */
-    .search-card {
-      background: #fff; border-radius: 16px;
-      box-shadow: 0 2px 16px rgba(0,0,0,0.10), 0 0 0 1px rgba(0,41,58,0.06);
-      overflow: hidden; margin: 0 0 16px;
-    }
-    .sf-row {
-      display: flex; align-items: center;
-      padding: 14px 16px; gap: 12px;
-      border-bottom: 1px solid #F0F2F4;
-      cursor: pointer; min-height: 60px;
-      -webkit-tap-highlight-color: transparent;
-      transition: background 0.1s;
-    }
+    .search-card { background: #fff; border-radius: 16px; box-shadow: 0 2px 16px rgba(0,0,0,0.10), 0 0 0 1px rgba(0,41,58,0.06); overflow: hidden; margin: 0 0 16px; }
+    .sf-row { display: flex; align-items: center; padding: 14px 16px; gap: 12px; border-bottom: 1px solid #F0F2F4; cursor: pointer; min-height: 60px; -webkit-tap-highlight-color: transparent; transition: background 0.1s; }
     .sf-row:last-of-type { border-bottom: none; }
     .sf-row:active { background: #F8FAFB; }
     .sf-icon { width: 36px; height: 36px; border-radius: 10px; background: #F0F6F9; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
@@ -72,62 +37,105 @@
     .sf-val { font-size: 15px; font-weight: 500; color: #B0BAC0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
     .sf-val.filled { color: #00293A; }
     .sf-chevron { color: #C5CDD2; flex-shrink: 0; font-size: 18px; }
-
-    .search-btn {
-      width: 100%; padding: 16px; background: #00609C; color: #fff;
-      border: none; border-radius: 12px; font-size: 16px; font-weight: 700;
-      font-family: 'DM Sans', Arial, sans-serif; cursor: pointer;
-      display: flex; align-items: center; justify-content: center; gap: 8px;
-      -webkit-tap-highlight-color: transparent;
-      transition: background 0.15s;
-    }
+    .search-btn { width: 100%; padding: 16px; background: #00609C; color: #fff; border: none; border-radius: 12px; font-size: 16px; font-weight: 700; font-family: 'DM Sans', Arial, sans-serif; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; -webkit-tap-highlight-color: transparent; transition: background 0.15s; }
     .search-btn:active { background: #00293A; }
-
-    .enterprise-nudge {
-      text-align: center; font-size: 13px; color: #6B7D87; margin-top: 14px; padding-bottom: 36px;
-    }
-    .enterprise-nudge a { color: #00609C; font-weight: 600; text-decoration: none; }
+    .enterprise-nudge { text-align: center; font-size: 13px; color: #6B7D87; margin-top: 14px; }
+    .enterprise-nudge a { color: #00609C; font-weight: 600; }
 
     /* ── TRUST ── */
     .trust { background: #E8F2F6; padding: 28px 0; border-bottom: 1px solid #D0E4EC; }
-    .trust-label {
-      font-size: 9px; font-weight: 700; letter-spacing: 1.4px; text-transform: uppercase;
-      color: #6B8FA0; text-align: center; margin-bottom: 20px; padding: 0 20px;
-      line-height: 1.5;
-    }
-    .trust-logos {
-      display: flex; gap: 36px; padding: 0 24px;
-      overflow-x: auto; scrollbar-width: none; -webkit-overflow-scrolling: touch;
-    }
+    .trust-label { font-size: 9px; font-weight: 700; letter-spacing: 1.4px; text-transform: uppercase; color: #6B8FA0; text-align: center; margin-bottom: 20px; padding: 0 20px; line-height: 1.5; }
+    .trust-logos { display: flex; gap: 36px; padding: 0 24px; overflow-x: auto; scrollbar-width: none; -webkit-overflow-scrolling: touch; align-items: center; }
     .trust-logos::-webkit-scrollbar { display: none; }
-    .trust-logos img { height: 22px; width: auto; opacity: 0.55; flex-shrink: 0; }
+    .trust-logo-text { font-size: 15px; font-weight: 700; color: #6B8FA0; opacity: 0.7; white-space: nowrap; flex-shrink: 0; letter-spacing: -0.3px; }
 
-    /* ── SECTIONS ── */
+    /* ── SHARED SECTION STYLES ── */
     .section { padding: 44px 20px; border-bottom: 1px solid #F0F2F4; }
+    .section.alt { background: #F8FAFB; }
     .section-eyebrow { font-size: 10px; font-weight: 700; letter-spacing: 1.6px; text-transform: uppercase; color: #00609C; margin-bottom: 10px; }
     .section-h2 { font-size: 26px; font-weight: 700; letter-spacing: -0.5px; line-height: 1.15; margin-bottom: 12px; }
     .section-sub { font-size: 15px; color: #4A6572; line-height: 1.55; margin-bottom: 24px; }
-    .card-grid { display: flex; flex-direction: column; gap: 14px; }
-    .card { background: #F8FAFB; border-radius: 14px; padding: 20px; }
+    .text-link { font-size: 14px; font-weight: 600; color: #00609C; display: inline-block; margin-top: 4px; }
+
+    /* ── WTYPES ── */
+    .card-grid { display: flex; flex-direction: column; gap: 14px; margin-top: 24px; }
+    .card { background: #fff; border: 1px solid #E8EAEC; border-radius: 14px; padding: 20px; }
     .card-title { font-size: 16px; font-weight: 700; margin-bottom: 8px; }
     .card-body { font-size: 14px; color: #4A6572; line-height: 1.5; margin-bottom: 14px; }
-    .card-link { font-size: 14px; font-weight: 600; color: #00609C; text-decoration: none; }
+    .card-link { font-size: 14px; font-weight: 600; color: #00609C; }
 
-    /* ── BOTTOM SHEET ── */
-    .sheet-overlay {
-      display: none; position: fixed; inset: 0;
-      background: rgba(0,0,0,0.45); z-index: 300;
-      backdrop-filter: blur(2px);
-    }
+    /* ── PLATFORM ── */
+    .layers { display: flex; flex-direction: column; gap: 16px; margin-top: 24px; }
+    .layer { background: #fff; border: 1px solid #E8EAEC; border-radius: 14px; padding: 20px; position: relative; overflow: hidden; }
+    .layer::before { content: ''; position: absolute; top: 0; left: 0; bottom: 0; width: 4px; }
+    .l1::before { background: #A1DED2; }
+    .l2::before { background: #BADF93; }
+    .l3::before { background: #00609C; }
+    .layer-num { font-size: 10px; font-weight: 700; letter-spacing: 1.4px; text-transform: uppercase; color: #9AA2A8; margin-bottom: 6px; }
+    .layer-h { font-size: 16px; font-weight: 700; margin-bottom: 8px; }
+    .layer-b { font-size: 14px; color: #4A6572; line-height: 1.5; }
+    .flywheel-note { background: #00293A; border-radius: 14px; padding: 20px; margin-top: 16px; }
+    .flywheel-label { font-size: 13px; font-weight: 700; color: #A1DED2; margin-bottom: 8px; }
+    .flywheel-seq { font-size: 12px; color: #7A9BA8; line-height: 1.5; margin-bottom: 14px; }
+    .video-cta { display: inline-flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 600; color: #A1DED2; }
+
+    /* ── SOLUTIONS ── */
+    .sol-pills { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 20px; }
+    .sol-pill { font-size: 13px; font-weight: 600; color: #00609C; border: 1.5px solid #B8D8E8; border-radius: 20px; padding: 8px 16px; background: #EEF7FB; white-space: nowrap; }
+
+    /* ── PROOF ── */
+    .quotes { display: flex; flex-direction: column; gap: 16px; margin-top: 24px; }
+    .quote { background: #fff; border: 1px solid #E8EAEC; border-radius: 14px; padding: 20px; }
+    .quote-text { font-size: 15px; line-height: 1.6; color: #00293A; margin-bottom: 16px; font-style: italic; }
+    .quote-footer { display: flex; align-items: center; gap: 12px; }
+    .quote-avatar { width: 40px; height: 40px; border-radius: 50%; background: #E8F2F6; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; color: #00609C; flex-shrink: 0; }
+    .quote-attr { font-size: 13px; font-weight: 600; color: #00293A; }
+    .quote-co { font-size: 12px; color: #9AA2A8; margin-top: 2px; }
+
+    /* ── OPERATORS ── */
+    .operators-card { background: #00293A; border-radius: 16px; padding: 28px 24px; color: #fff; }
+    .operators-h2 { font-size: 26px; font-weight: 700; letter-spacing: -0.5px; line-height: 1.15; margin-bottom: 12px; color: #fff; }
+    .operators-body { font-size: 15px; color: #A1B8C2; line-height: 1.55; margin-bottom: 24px; }
+    .btn-operator { display: inline-block; padding: 13px 24px; background: #A1DED2; color: #00293A; border-radius: 10px; font-size: 15px; font-weight: 700; }
+
+    /* ── RESOURCES ── */
+    .res-cards { display: flex; flex-direction: column; gap: 16px; margin-top: 24px; }
+    .res-card { background: #fff; border: 1px solid #E8EAEC; border-radius: 14px; overflow: hidden; display: block; color: #00293A; }
+    .res-card-img { height: 140px; background: linear-gradient(135deg, #E8F2F6 0%, #D0E8E4 100%); }
+    .res-card-body { padding: 16px; }
+    .res-read-time { font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: #9AA2A8; margin-bottom: 6px; }
+    .res-title { font-size: 15px; font-weight: 700; line-height: 1.35; margin-bottom: 8px; }
+    .res-excerpt { font-size: 13px; color: #4A6572; line-height: 1.5; margin-bottom: 10px; }
+    .res-link { font-size: 13px; font-weight: 600; color: #00609C; }
+    .resources-more { display: inline-block; margin-top: 20px; font-size: 14px; font-weight: 600; color: #00609C; }
+
+    /* ── CTA ── */
+    .cta-section { background: linear-gradient(135deg, #00293A 0%, #004A6E 100%); padding: 44px 20px; text-align: center; }
+    .cta-h2 { font-size: 28px; font-weight: 700; color: #fff; letter-spacing: -0.5px; line-height: 1.15; margin-bottom: 14px; }
+    .cta-sub { font-size: 15px; color: #A1B8C2; line-height: 1.55; margin-bottom: 28px; }
+    .cta-btns { display: flex; flex-direction: column; gap: 12px; }
+    .btn-p { display: block; padding: 15px; background: #00609C; color: #fff; border-radius: 12px; font-size: 16px; font-weight: 700; text-align: center; }
+    .btn-g { display: block; padding: 15px; background: rgba(255,255,255,0.12); color: #fff; border-radius: 12px; font-size: 16px; font-weight: 700; text-align: center; border: 1.5px solid rgba(255,255,255,0.25); }
+
+    /* ── FOOTER ── */
+    .footer { padding: 36px 20px; background: #fff; border-top: 1px solid #E8EAEC; }
+    .footer-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 28px; }
+    .footer-brand { font-size: 16px; font-weight: 700; color: #00293A; }
+    .footer-social a { font-size: 13px; font-weight: 600; color: #4A6572; margin-left: 16px; }
+    .footer-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 24px 16px; margin-bottom: 28px; }
+    .footer-col h4 { font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: #9AA2A8; margin-bottom: 10px; }
+    .footer-col ul { list-style: none; }
+    .footer-col li { margin-bottom: 8px; }
+    .footer-col a { font-size: 14px; color: #4A6572; }
+    .footer-bottom { border-top: 1px solid #F0F2F4; padding-top: 20px; display: flex; flex-direction: column; gap: 8px; }
+    .footer-copy { font-size: 12px; color: #9AA2A8; }
+    .footer-legal { display: flex; gap: 16px; }
+    .footer-legal a { font-size: 12px; color: #9AA2A8; }
+
+    /* ── BOTTOM SHEETS ── */
+    .sheet-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.45); z-index: 300; backdrop-filter: blur(2px); }
     .sheet-overlay.open { display: block; }
-    .sheet {
-      position: fixed; left: 0; right: 0; bottom: 0; z-index: 400;
-      background: #fff; border-radius: 20px 20px 0 0;
-      padding: 0 0 env(safe-area-inset-bottom, 16px);
-      transform: translateY(100%);
-      transition: transform 0.3s cubic-bezier(0.32, 0.72, 0, 1);
-      max-height: 92vh; overflow-y: auto;
-    }
+    .sheet { position: fixed; left: 0; right: 0; bottom: 0; z-index: 400; background: #fff; border-radius: 20px 20px 0 0; padding: 0 0 env(safe-area-inset-bottom, 16px); transform: translateY(100%); transition: transform 0.3s cubic-bezier(0.32, 0.72, 0, 1); max-height: 92vh; overflow-y: auto; }
     .sheet.open { transform: translateY(0); }
     .sheet-handle { width: 36px; height: 4px; background: #DDE1E5; border-radius: 2px; margin: 12px auto 0; }
     .sheet-header { padding: 16px 20px 12px; border-bottom: 1px solid #F0F2F4; display: flex; align-items: center; justify-content: space-between; }
@@ -135,68 +143,51 @@
     .sheet-close { background: none; border: none; font-size: 22px; color: #9AA2A8; cursor: pointer; padding: 4px; line-height: 1; }
     .sheet-body { padding: 20px; }
 
-    /* Location sheet */
+    /* Location */
     .loc-input-wrap { position: relative; margin-bottom: 12px; }
-    .loc-input {
-      width: 100%; padding: 13px 16px 13px 42px;
-      font-size: 16px; font-family: 'DM Sans', Arial, sans-serif;
-      border: 1.5px solid #CDD1D5; border-radius: 12px; color: #00293A;
-      outline: none;
-    }
+    .loc-input { width: 100%; padding: 13px 16px 13px 42px; font-size: 16px; font-family: 'DM Sans', Arial, sans-serif; border: 1.5px solid #CDD1D5; border-radius: 12px; color: #00293A; outline: none; }
     .loc-input:focus { border-color: #00609C; }
     .loc-input-icon { position: absolute; left: 13px; top: 50%; transform: translateY(-50%); color: #9AA2A8; pointer-events: none; }
     .loc-suggestions { border-radius: 12px; overflow: hidden; border: 1px solid #E5E7EA; }
-    .loc-suggestion {
-      padding: 13px 16px; font-size: 15px; cursor: pointer;
-      border-bottom: 1px solid #F0F2F4; display: flex; align-items: center; gap: 12px;
-      -webkit-tap-highlight-color: transparent;
-    }
+    .loc-suggestion { padding: 13px 16px; font-size: 15px; cursor: pointer; border-bottom: 1px solid #F0F2F4; display: flex; align-items: center; gap: 12px; -webkit-tap-highlight-color: transparent; }
     .loc-suggestion:last-child { border-bottom: none; }
     .loc-suggestion:active { background: #F8FAFB; }
     .loc-suggestion-icon { color: #9AA2A8; flex-shrink: 0; }
-    .loc-confirm-btn { width: 100%; margin-top: 16px; padding: 15px; background: #00609C; color: #fff; border: none; border-radius: 12px; font-size: 16px; font-weight: 700; font-family: 'DM Sans', Arial, sans-serif; cursor: pointer; }
+    .sheet-confirm-btn { width: 100%; margin-top: 16px; padding: 15px; background: #00609C; color: #fff; border: none; border-radius: 12px; font-size: 16px; font-weight: 700; font-family: 'DM Sans', Arial, sans-serif; cursor: pointer; }
 
-    /* Calendar sheet */
+    /* Calendar */
     .dp-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; }
     .dp-nav { background: none; border: 1.5px solid #E5E7EA; border-radius: 8px; width: 36px; height: 36px; font-size: 18px; cursor: pointer; display: flex; align-items: center; justify-content: center; color: #00293A; }
     .dp-month { font-size: 16px; font-weight: 700; }
     .dp-grid { display: grid; grid-template-columns: repeat(7,1fr); gap: 4px; margin-bottom: 16px; }
     .dp-dow { font-size: 11px; font-weight: 700; text-align: center; color: #9AA2A8; padding: 4px 0; }
     .dp-day { aspect-ratio: 1; display: flex; align-items: center; justify-content: center; font-size: 14px; border-radius: 8px; cursor: pointer; color: #00293A; -webkit-tap-highlight-color: transparent; }
-    .dp-day:active:not(.past):not(.empty) { background: #E8F2F6; }
     .dp-day.today { font-weight: 700; color: #00609C; }
     .dp-day.selected { background: #00609C; color: #fff; font-weight: 700; }
     .dp-day.past { color: #CDD1D5; pointer-events: none; }
     .dp-day.empty { pointer-events: none; }
     .dp-time-section { border-top: 1px solid #F0F2F4; padding-top: 16px; margin-top: 4px; }
-    .dp-time-toggle { display: flex; align-items: center; justify-content: space-between; cursor: pointer; padding: 4px 0 10px; -webkit-tap-highlight-color: transparent; }
+    .dp-time-toggle { display: flex; align-items: center; justify-content: space-between; cursor: pointer; padding: 4px 0 10px; }
     .dp-time-lbl { font-size: 12px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: #9AA2A8; }
     .dp-time-chevron { color: #9AA2A8; transition: transform 0.15s; }
     .dp-time-chevron.open { transform: rotate(180deg); }
     .dp-time-body { display: none; }
     .dp-time-body.open { display: block; }
     .dp-time-select { width: 100%; padding: 12px 14px; font-size: 15px; font-family: 'DM Sans', Arial, sans-serif; border: 1.5px solid #CDD1D5; border-radius: 10px; color: #00293A; background: #fff; }
-    .dp-confirm { width: 100%; margin-top: 20px; padding: 15px; background: #00609C; color: #fff; border: none; border-radius: 12px; font-size: 16px; font-weight: 700; font-family: 'DM Sans', Arial, sans-serif; cursor: pointer; }
 
-    /* Space type sheet */
+    /* Space type */
     .st-section-label { font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: #9AA2A8; margin-bottom: 12px; }
     .st-chips { display: flex; flex-wrap: wrap; gap: 10px; }
     .st-chip { font-size: 14px; font-weight: 500; color: #00293A; border: 1.5px solid #CDD1D5; border-radius: 10px; padding: 10px 18px; cursor: pointer; background: #fff; font-family: 'DM Sans', Arial, sans-serif; -webkit-tap-highlight-color: transparent; transition: all 0.1s; }
     .st-chip.active { border-color: #00609C; background: #E8F2F6; color: #00609C; font-weight: 700; }
-    .st-confirm { width: 100%; margin-top: 20px; padding: 15px; background: #00609C; color: #fff; border: none; border-radius: 12px; font-size: 16px; font-weight: 700; font-family: 'DM Sans', Arial, sans-serif; cursor: pointer; }
 
-    /* Capacity sheet */
+    /* Capacity */
     .cap-stepper { display: flex; align-items: stretch; border: 1.5px solid #CDD1D5; border-radius: 12px; overflow: hidden; margin-top: 8px; }
     .cap-btn { background: #fff; border: none; padding: 0 24px; font-size: 24px; color: #00293A; cursor: pointer; min-height: 60px; -webkit-tap-highlight-color: transparent; transition: background 0.1s; }
     .cap-btn:active { background: #F0F6F9; }
     .cap-btn:disabled { color: #CDD1D5; }
     .cap-display { flex: 1; display: flex; align-items: center; justify-content: center; gap: 10px; border-left: 1.5px solid #CDD1D5; border-right: 1.5px solid #CDD1D5; }
     .cap-count { font-size: 20px; font-weight: 700; color: #00293A; }
-    .cap-confirm { width: 100%; margin-top: 20px; padding: 15px; background: #00609C; color: #fff; border: none; border-radius: 12px; font-size: 16px; font-weight: 700; font-family: 'DM Sans', Arial, sans-serif; cursor: pointer; }
-
-    /* ── FOOTER ── */
-    .footer-simple { padding: 32px 20px; text-align: center; font-size: 13px; color: #9AA2A8; border-top: 1px solid #F0F2F4; }
-    .footer-simple a { color: #9AA2A8; text-decoration: none; }
   </style>
 </head>
 <body>
@@ -204,166 +195,295 @@
   <!-- NAV -->
   <nav class="nav">
     <a class="nav-logo" href="#">
-      <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <rect width="40" height="40" rx="10" fill="#00609C"/>
-        <path d="M10 28L20 12L30 28H10Z" fill="#fff" opacity="0.9"/>
-        <circle cx="20" cy="20" r="4" fill="#A1DED2"/>
-      </svg>
+      <svg width="32" height="32" viewBox="0 0 40 40" fill="none"><rect width="40" height="40" rx="10" fill="#00609C"/><path d="M10 28L20 12L30 28H10Z" fill="#fff" opacity="0.9"/><circle cx="20" cy="20" r="4" fill="#A1DED2"/></svg>
       <span class="nav-logo-text">LiquidSpace</span>
     </a>
     <button class="nav-menu-btn" aria-label="Menu">
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
-        <line x1="4" y1="7" x2="20" y2="7" stroke="#00293A" stroke-width="1.8" stroke-linecap="round"/>
-        <line x1="4" y1="12" x2="20" y2="12" stroke="#00293A" stroke-width="1.8" stroke-linecap="round"/>
-        <line x1="4" y1="17" x2="20" y2="17" stroke="#00293A" stroke-width="1.8" stroke-linecap="round"/>
-      </svg>
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><line x1="4" y1="7" x2="20" y2="7" stroke="#00293A" stroke-width="1.8" stroke-linecap="round"/><line x1="4" y1="12" x2="20" y2="12" stroke="#00293A" stroke-width="1.8" stroke-linecap="round"/><line x1="4" y1="17" x2="20" y2="17" stroke="#00293A" stroke-width="1.8" stroke-linecap="round"/></svg>
     </button>
   </nav>
 
   <!-- HERO -->
   <section class="hero">
-    <div class="hero-eyebrow">Workplace Platform</div>
+    <div class="eyebrow">Workplace Platform</div>
     <h1 class="hero-h1">Find flexible workspace.<br>Run your portfolio.</h1>
     <p class="hero-sub">Book a meeting room, manage your workplace program, or plan your next portfolio move.</p>
 
-    <!-- SEARCH CARD -->
     <div class="search-card">
-
-      <!-- WHERE -->
-      <div class="sf-row" id="row-where" onclick="openSheet('loc')">
-        <div class="sf-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="#00609C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="12" cy="10" r="3"/><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/>
-          </svg>
-        </div>
-        <div class="sf-text">
-          <div class="sf-label">Where</div>
-          <div class="sf-val" id="where-val">Search by city</div>
-        </div>
+      <div class="sf-row" onclick="openSheet('loc')">
+        <div class="sf-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#00609C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="10" r="3"/><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/></svg></div>
+        <div class="sf-text"><div class="sf-label">Where</div><div class="sf-val" id="where-val">Search by city</div></div>
         <div class="sf-chevron">›</div>
       </div>
-
-      <!-- WHEN -->
-      <div class="sf-row" id="row-when" onclick="openSheet('cal')">
-        <div class="sf-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="#00609C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>
-          </svg>
-        </div>
-        <div class="sf-text">
-          <div class="sf-label">When</div>
-          <div class="sf-val" id="when-val">Add date &amp; time</div>
-        </div>
+      <div class="sf-row" onclick="openSheet('cal')">
+        <div class="sf-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#00609C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></div>
+        <div class="sf-text"><div class="sf-label">When</div><div class="sf-val" id="when-val">Add date &amp; time</div></div>
         <div class="sf-chevron">›</div>
       </div>
-
-      <!-- SPACE TYPE -->
-      <div class="sf-row" id="row-type" onclick="openSheet('type')">
-        <div class="sf-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="#00609C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/>
-          </svg>
-        </div>
-        <div class="sf-text">
-          <div class="sf-label">Space type</div>
-          <div class="sf-val" id="type-val">Any type</div>
-        </div>
+      <div class="sf-row" onclick="openSheet('type')">
+        <div class="sf-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#00609C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg></div>
+        <div class="sf-text"><div class="sf-label">Space type</div><div class="sf-val" id="type-val">Any type</div></div>
         <div class="sf-chevron">›</div>
       </div>
-
-      <!-- WHO -->
-      <div class="sf-row" id="row-who" onclick="openSheet('cap')">
-        <div class="sf-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="#00609C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/>
-          </svg>
-        </div>
-        <div class="sf-text">
-          <div class="sf-label">Who</div>
-          <div class="sf-val" id="who-val">Capacity</div>
-        </div>
+      <div class="sf-row" onclick="openSheet('cap')">
+        <div class="sf-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#00609C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg></div>
+        <div class="sf-text"><div class="sf-label">Who</div><div class="sf-val" id="who-val">Capacity</div></div>
         <div class="sf-chevron">›</div>
       </div>
-
-    </div><!-- /search-card -->
+    </div>
 
     <button class="search-btn" id="search-btn">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
-        <circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="22" y2="22"/>
-      </svg>
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="22" y2="22"/></svg>
       Search
     </button>
-
-    <div class="enterprise-nudge">Managing a portfolio program? <a href="https://liquidspace.com/platform">See the platform →</a></div>
-
-  </section><!-- /hero -->
+    <p class="enterprise-nudge" style="margin-top:14px;">Managing a portfolio program? <a href="https://liquidspace.com/platform">See the platform →</a></p>
+  </section>
 
   <!-- TRUST -->
   <div class="trust">
     <div class="trust-label">Trusted by corporate real estate teams at the world's top enterprises</div>
-    <div class="trust-logos" id="trust-logos"></div>
+    <div class="trust-logos">
+      <span class="trust-logo-text">AT&amp;T</span>
+      <span class="trust-logo-text">Allstate</span>
+      <span class="trust-logo-text">Spotify</span>
+      <span class="trust-logo-text">Airbnb</span>
+      <span class="trust-logo-text">Uber</span>
+      <span class="trust-logo-text">Microsoft</span>
+      <span class="trust-logo-text">Meta</span>
+      <span class="trust-logo-text">Nike</span>
+    </div>
   </div>
 
-  <!-- SECTIONS -->
+  <!-- WORKSPACE TYPES -->
   <section class="section">
-    <div class="section-eyebrow">Flexible Office Space</div>
+    <div class="eyebrow" style="color:#00609C;">Flexible office space</div>
     <h2 class="section-h2">100,000+ workspaces.<br>Every market.</h2>
     <p class="section-sub">A desk for an afternoon. A meeting room for a week. A private office for the next three years. 3,500+ cities, 130+ countries, billed through a single agreement.</p>
+    <a class="text-link" href="https://liquidspace.com/search">Browse all spaces →</a>
     <div class="card-grid">
       <div class="card">
         <div class="card-title">On-demand workspace</div>
         <div class="card-body">Desks, meeting rooms, and private offices — instantly bookable by the hour, day, or month. No membership, no commitment.</div>
-        <a class="card-link" href="https://liquidspace.com/search">Find a space →</a>
+        <a class="card-link" href="#">Find a space →</a>
       </div>
       <div class="card">
         <div class="card-title">Private office space</div>
         <div class="card-body">Dedicated private offices and team hubs for consistent use — structured for repeat access and managed within your program.</div>
-        <a class="card-link" href="https://liquidspace.com/private-office">Explore private offices →</a>
+        <a class="card-link" href="#">Explore private offices →</a>
       </div>
       <div class="card">
         <div class="card-title">Managed office space</div>
-        <div class="card-body">Custom, branded office environments on flexible terms — predictable cost, full control, and no long-term lease commitment.</div>
-        <a class="card-link" href="https://liquidspace.com/managed-office">Explore managed offices →</a>
+        <div class="card-body">Custom, branded office environments on flexible terms — with predictable cost, full control, and no long-term lease commitment.</div>
+        <a class="card-link" href="#">Explore managed offices →</a>
       </div>
     </div>
   </section>
 
+  <!-- PLATFORM / HOW IT WORKS -->
+  <section class="section alt">
+    <div class="eyebrow">How it works</div>
+    <h2 class="section-h2">Workplace transformation doesn't happen in silos.</h2>
+    <p class="section-sub">Most CRE teams run transaction management, lease administration, and portfolio planning across disconnected systems. LiquidSpace connects them all.</p>
+    <div class="layers">
+      <div class="layer l1">
+        <div class="layer-num">Access</div>
+        <div class="layer-h">Book workspace anywhere, within policy.</div>
+        <div class="layer-b">Every booking is tied to your eligibility rules, budgets, and approval workflows — generating the behavioral signal that powers every decision downstream.</div>
+      </div>
+      <div class="layer l2">
+        <div class="layer-num">Operations</div>
+        <div class="layer-h">Govern programs. Manage commitments.</div>
+        <div class="layer-b">From setting who can book and where, to managing every license and transaction — all in one system. AI supports every step so you focus on decisions, not admin.</div>
+      </div>
+      <div class="layer l3">
+        <div class="layer-num">Strategy</div>
+        <div class="layer-h">Know what your portfolio should do next.</div>
+        <div class="layer-b">Hub placement, footprint sizing, lease renewal — modeled with live behavioral data from your own portfolio. So when it's time to decide, you already know the answer.</div>
+      </div>
+    </div>
+    <div class="flywheel-note">
+      <div class="flywheel-label">Each layer makes the next one smarter.</div>
+      <div class="flywheel-seq">Access generates signal → Operations governs action → Strategy refines decisions ↻</div>
+      <a href="https://www.youtube.com/watch?v=vOWIJHOTw3I&t=2s" class="video-cta" target="_blank">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7.5" stroke="#A1DED2" stroke-width="1.2"/><polygon points="6.5,5 11.5,8 6.5,11" fill="#A1DED2"/></svg>
+        Watch a 2-min overview
+      </a>
+    </div>
+  </section>
+
+  <!-- SOLUTIONS -->
+  <section class="section">
+    <div class="eyebrow" style="color:#00609C;">The solutions</div>
+    <h2 class="section-h2">Everything your program needs, connected.</h2>
+    <div class="sol-pills">
+      <span class="sol-pill">Scenario Modeler</span>
+      <span class="sol-pill">Hub Locator</span>
+      <span class="sol-pill">License Administrator</span>
+      <span class="sol-pill">Transaction Manager</span>
+      <span class="sol-pill">Payments Manager</span>
+      <span class="sol-pill">Workplace Manager</span>
+      <span class="sol-pill">On-Demand Workspace</span>
+      <span class="sol-pill">Managed Office Space</span>
+      <span class="sol-pill">Private Office Space</span>
+    </div>
+    <a class="text-link" href="#" style="margin-top:20px;">Get a demo →</a>
+  </section>
+
+  <!-- PROOF -->
+  <section class="section alt">
+    <div class="eyebrow">Customer outcomes</div>
+    <h2 class="section-h2">What happens when enterprises actually run on LiquidSpace.</h2>
+    <div class="quotes">
+      <div class="quote">
+        <p class="quote-text">"Our overall real estate spend is down over 80%. LiquidSpace allows teams in markets where we don't have offices to gather on an on-demand basis."</p>
+        <div class="quote-footer">
+          <div class="quote-avatar">TM</div>
+          <div><div class="quote-attr">Corporate Real Estate Strategy Leader</div><div class="quote-co">T-Mobile · 70,000+ employees</div></div>
+        </div>
+      </div>
+      <div class="quote">
+        <p class="quote-text">"LiquidSpace's dashboard tells us exactly what our average space utilization is, which makes budgeting much easier. We're also able to spot changes in markets fast."</p>
+        <div class="quote-footer">
+          <div class="quote-avatar">JW</div>
+          <div><div class="quote-attr">Jeff Waltmire, Workplace Resources</div><div class="quote-co">Enterprise customer · 51–200 employees</div></div>
+        </div>
+      </div>
+      <div class="quote">
+        <p class="quote-text">"We were able to set up five offices in a single day. I just lined them up on LiquidSpace — it was incredibly easy. No paperwork, no back and forth."</p>
+        <div class="quote-footer">
+          <div class="quote-avatar" style="background:#BADF93;color:#00293A;">LS</div>
+          <div><div class="quote-attr">Head of Real Estate</div><div class="quote-co">Technology company · 500–1,000 employees</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- OPERATORS -->
+  <section class="section">
+    <div class="operators-card">
+      <h2 class="operators-h2">Better spaces<br>in more places.</h2>
+      <p class="operators-body">Got extra space? Join the largest marketplace of flexible and dedicated office space. List by the hour, day, or longer — and connect with enterprise customers.</p>
+      <a href="#" class="btn-operator">List your workspace</a>
+    </div>
+  </section>
+
+  <!-- RESOURCES -->
+  <section class="section alt">
+    <div class="eyebrow">Resources</div>
+    <h2 class="section-h2">Thought leadership for CRE strategy at scale.</h2>
+    <div class="res-cards">
+      <a href="#" class="res-card">
+        <div class="res-card-img"></div>
+        <div class="res-card-body">
+          <div class="res-read-time">4 min read</div>
+          <div class="res-title">The forecast is broken. Your lease doesn't know that yet.</div>
+          <div class="res-excerpt">How do I responsibly make a 10-year lease commitment when our business can't see 18 months ahead?</div>
+          <span class="res-link">Read more →</span>
+        </div>
+      </a>
+      <a href="#" class="res-card">
+        <div class="res-card-img" style="background:linear-gradient(135deg,#D0E8E4 0%,#E8F2F6 100%);"></div>
+        <div class="res-card-body">
+          <div class="res-read-time">4 min read</div>
+          <div class="res-title">LiquidSpace introduces License Administrator, the command center for flexible office.</div>
+          <div class="res-excerpt">LiquidSpace today unveiled License Administrator, transforming flexible office license administration.</div>
+          <span class="res-link">Read more →</span>
+        </div>
+      </a>
+      <a href="#" class="res-card">
+        <div class="res-card-img" style="background:linear-gradient(135deg,#EEF7FB 0%,#D0E4EC 100%);"></div>
+        <div class="res-card-body">
+          <div class="res-read-time">4 min read</div>
+          <div class="res-title">Four lies CRE leaders tell themselves — and the truth that sets them free.</div>
+          <div class="res-excerpt">The mindset shift CRE leaders need to move from stuck to strategic.</div>
+          <span class="res-link">Read more →</span>
+        </div>
+      </a>
+    </div>
+    <a href="#" class="resources-more">View all posts →</a>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section">
+    <h2 class="cta-h2">Ready when you are.</h2>
+    <p class="cta-sub">Book a workspace in seconds, or grab 20 minutes with our team — we'll review your program, model your scenarios, and show you what running your portfolio on one connected platform actually looks like.</p>
+    <div class="cta-btns">
+      <a href="#" class="btn-p">Get a demo</a>
+      <a href="https://liquidspace.com/search" class="btn-g">Find workspace nearby</a>
+    </div>
+  </section>
+
   <!-- FOOTER -->
-  <footer class="footer-simple">
-    <p>© 2026 LiquidSpace, Inc. · <a href="#">Privacy</a> · <a href="#">Terms</a></p>
+  <footer class="footer">
+    <div class="footer-top">
+      <span class="footer-brand">LiquidSpace</span>
+      <div class="footer-social">
+        <a href="https://www.linkedin.com/company/liquidspace" target="_blank">LinkedIn</a>
+        <a href="#">Contact</a>
+      </div>
+    </div>
+    <div class="footer-cols">
+      <div class="footer-col">
+        <h4>Get Started</h4>
+        <ul>
+          <li><a href="#">How it Works</a></li>
+          <li><a href="#">Book Demo</a></li>
+          <li><a href="#">Find Space</a></li>
+          <li><a href="#">Pricing</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Portfolio Strategy</h4>
+        <ul>
+          <li><a href="#">Scenario Modeler</a></li>
+          <li><a href="#">Hub Locator</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Workplace Ops</h4>
+        <ul>
+          <li><a href="#">Workplace Manager</a></li>
+          <li><a href="#">License Administrator</a></li>
+          <li><a href="#">Transaction Manager</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="#">About</a></li>
+          <li><a href="#">List Workspace</a></li>
+          <li><a href="#">Blog</a></li>
+          <li><a href="#">FAQ</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-copy">© LiquidSpace Inc. 2026</div>
+      <div class="footer-legal"><a href="#">Terms</a><a href="#">Privacy</a></div>
+    </div>
   </footer>
 
-  <!-- ═══════════════════ BOTTOM SHEETS ═══════════════════ -->
-
-  <!-- Overlay -->
+  <!-- OVERLAY -->
   <div class="sheet-overlay" id="overlay" onclick="closeSheet()"></div>
 
   <!-- LOCATION SHEET -->
   <div class="sheet" id="sheet-loc">
     <div class="sheet-handle"></div>
-    <div class="sheet-header">
-      <span class="sheet-title">Where are you going?</span>
-      <button class="sheet-close" onclick="closeSheet()">×</button>
-    </div>
+    <div class="sheet-header"><span class="sheet-title">Where are you going?</span><button class="sheet-close" onclick="closeSheet()">×</button></div>
     <div class="sheet-body">
       <div class="loc-input-wrap">
-        <span class="loc-input-icon">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="22" y2="22"/></svg>
-        </span>
+        <span class="loc-input-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="22" y2="22"/></svg></span>
         <input class="loc-input" id="loc-input" type="text" placeholder="City, neighborhood, or address" autocomplete="off" />
       </div>
       <div id="loc-suggestions"></div>
-      <button class="loc-confirm-btn" id="loc-confirm">Confirm location</button>
+      <button class="sheet-confirm-btn" id="loc-confirm">Confirm location</button>
     </div>
   </div>
 
   <!-- CALENDAR SHEET -->
   <div class="sheet" id="sheet-cal">
     <div class="sheet-handle"></div>
-    <div class="sheet-header">
-      <span class="sheet-title">When?</span>
-      <button class="sheet-close" onclick="closeSheet()">×</button>
-    </div>
+    <div class="sheet-header"><span class="sheet-title">When?</span><button class="sheet-close" onclick="closeSheet()">×</button></div>
     <div class="sheet-body">
       <div class="dp-header">
         <button class="dp-nav" id="dp-prev">‹</button>
@@ -372,39 +492,28 @@
       </div>
       <div class="dp-grid" id="dp-grid"></div>
       <div class="dp-time-section">
-        <div class="dp-time-toggle" id="dp-time-toggle">
-          <span class="dp-time-lbl">Start time</span>
-          <span class="dp-time-chevron" id="dp-time-chevron">▾</span>
-        </div>
-        <div class="dp-time-body" id="dp-time-body">
-          <select class="dp-time-select" id="dp-time-select"></select>
-        </div>
+        <div class="dp-time-toggle" id="dp-time-toggle"><span class="dp-time-lbl">Start time</span><span class="dp-time-chevron" id="dp-time-chevron">▾</span></div>
+        <div class="dp-time-body" id="dp-time-body"><select class="dp-time-select" id="dp-time-select"></select></div>
       </div>
-      <button class="dp-confirm" id="dp-confirm">Confirm</button>
+      <button class="sheet-confirm-btn" id="dp-confirm">Confirm</button>
     </div>
   </div>
 
   <!-- SPACE TYPE SHEET -->
   <div class="sheet" id="sheet-type">
     <div class="sheet-handle"></div>
-    <div class="sheet-header">
-      <span class="sheet-title">Space type</span>
-      <button class="sheet-close" onclick="closeSheet()">×</button>
-    </div>
+    <div class="sheet-header"><span class="sheet-title">Space type</span><button class="sheet-close" onclick="closeSheet()">×</button></div>
     <div class="sheet-body">
       <div class="st-section-label">Environment</div>
       <div class="st-chips" id="st-chips"></div>
-      <button class="st-confirm" id="st-confirm">Confirm</button>
+      <button class="sheet-confirm-btn" id="st-confirm">Confirm</button>
     </div>
   </div>
 
   <!-- CAPACITY SHEET -->
   <div class="sheet" id="sheet-cap">
     <div class="sheet-handle"></div>
-    <div class="sheet-header">
-      <span class="sheet-title">How many people?</span>
-      <button class="sheet-close" onclick="closeSheet()">×</button>
-    </div>
+    <div class="sheet-header"><span class="sheet-title">How many people?</span><button class="sheet-close" onclick="closeSheet()">×</button></div>
     <div class="sheet-body">
       <div class="cap-stepper">
         <button class="cap-btn" id="cap-dec">−</button>
@@ -414,107 +523,70 @@
         </div>
         <button class="cap-btn" id="cap-inc">+</button>
       </div>
-      <button class="cap-confirm" id="cap-confirm">Confirm</button>
+      <button class="sheet-confirm-btn" id="cap-confirm">Confirm</button>
     </div>
   </div>
 
   <script>
   (function() {
-    /* ── STATE ── */
-    var selectedLocation = '';
-    var selectedDate = null;
-    var selectedTime = '9:00 AM';
-    var selectedType = '';
-    var selectedCapacity = 1;
-    var activeSheet = null;
-
-    /* ── TIMES ── */
+    var selectedLocation = '', selectedDate = null, selectedTime = '9:00 AM', selectedType = '', selectedCapacity = 1, activeSheet = null;
     var TIMES = ['8:00 AM','8:30 AM','9:00 AM','9:30 AM','10:00 AM','10:30 AM','11:00 AM','11:30 AM','12:00 PM','12:30 PM','1:00 PM','1:30 PM','2:00 PM','2:30 PM','3:00 PM','3:30 PM','4:00 PM','4:30 PM','5:00 PM'];
+    var SPACE_TYPES = [{key:'',label:'Any type'},{key:'desk',label:'Desk'},{key:'office',label:'Office'},{key:'meeting-space',label:'Meeting Space'},{key:'event-space',label:'Event Space'}];
 
-    /* ── SPACE TYPES ── */
-    var SPACE_TYPES = [
-      { key: '', label: 'Any type' },
-      { key: 'desk', label: 'Desk' },
-      { key: 'office', label: 'Office' },
-      { key: 'meeting-space', label: 'Meeting Space' },
-      { key: 'event-space', label: 'Event Space' },
-    ];
-
-    /* ── SHEET OPEN/CLOSE ── */
     window.openSheet = function(name) {
-      closeSheet();
+      if (activeSheet) { document.getElementById('sheet-'+activeSheet).classList.remove('open'); }
       activeSheet = name;
       document.getElementById('overlay').classList.add('open');
-      document.getElementById('sheet-' + name).classList.add('open');
+      document.getElementById('sheet-'+name).classList.add('open');
       document.body.style.overflow = 'hidden';
-      if (name === 'loc') { setTimeout(function(){ document.getElementById('loc-input').focus(); }, 350); }
+      if (name === 'cal') renderCalendar();
+      if (name === 'type') renderChips();
+      if (name === 'loc') setTimeout(function(){ document.getElementById('loc-input').focus(); }, 350);
     };
     window.closeSheet = function() {
       if (!activeSheet) return;
       document.getElementById('overlay').classList.remove('open');
-      document.getElementById('sheet-' + activeSheet).classList.remove('open');
+      document.getElementById('sheet-'+activeSheet).classList.remove('open');
       document.body.style.overflow = '';
       activeSheet = null;
     };
 
-    /* ── TRUST LOGOS (inline base64 from desktop file omitted; use text fallback) ── */
-    var BRANDS = ['AT&T','Allstate','Spotify','Airbnb','Uber','Microsoft','Meta','Nike'];
-    var tl = document.getElementById('trust-logos');
-    tl.innerHTML = BRANDS.map(function(b){
-      return '<span style="font-size:14px;font-weight:700;color:#6B8FA0;opacity:0.7;white-space:nowrap;flex-shrink:0;">'+b+'</span>';
-    }).join('');
-
-    /* ─────────────── LOCATION ─────────────── */
-    var locInput = document.getElementById('loc-input');
-    var locSuggs = document.getElementById('loc-suggestions');
-    var debounceTimer;
+    /* LOCATION */
+    var locInput = document.getElementById('loc-input'), locSuggs = document.getElementById('loc-suggestions'), debounce;
     locInput.addEventListener('input', function() {
-      clearTimeout(debounceTimer);
+      clearTimeout(debounce);
       var q = locInput.value.trim();
       if (q.length < 2) { locSuggs.innerHTML = ''; return; }
-      debounceTimer = setTimeout(function() {
-        fetch('https://nominatim.openstreetmap.org/search?format=json&limit=5&addressdetails=1&q=' + encodeURIComponent(q))
+      debounce = setTimeout(function() {
+        fetch('https://nominatim.openstreetmap.org/search?format=json&limit=5&addressdetails=1&q='+encodeURIComponent(q))
           .then(function(r){ return r.json(); })
           .then(function(data) {
             locSuggs.innerHTML = data.slice(0,5).map(function(item) {
-              var display = item.display_name.split(',').slice(0,3).join(', ');
-              return '<div class="loc-suggestion" data-name="'+encodeURIComponent(display)+'">'
-                + '<span class="loc-suggestion-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="10" r="3"/><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/></svg></span>'
-                + '<span>' + display + '</span></div>';
+              var d = item.display_name.split(',').slice(0,3).join(', ');
+              return '<div class="loc-suggestion" data-name="'+encodeURIComponent(d)+'"><span class="loc-suggestion-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="10" r="3"/><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/></svg></span><span>'+d+'</span></div>';
             }).join('');
             locSuggs.querySelectorAll('.loc-suggestion').forEach(function(el) {
-              el.addEventListener('click', function() {
-                selectedLocation = decodeURIComponent(this.dataset.name);
-                locInput.value = selectedLocation;
-                locSuggs.innerHTML = '';
-                confirmLocation();
-              });
+              el.addEventListener('click', function() { selectedLocation = decodeURIComponent(this.dataset.name); locInput.value = selectedLocation; locSuggs.innerHTML = ''; confirmLocation(); });
             });
           }).catch(function(){});
       }, 300);
     });
-
     function confirmLocation() {
       var val = locInput.value.trim() || selectedLocation;
       if (!val) return;
       selectedLocation = val;
-      var whVal = document.getElementById('where-val');
-      whVal.textContent = val.split(',')[0];
-      whVal.classList.add('filled');
+      var el = document.getElementById('where-val');
+      el.textContent = val.split(',')[0]; el.classList.add('filled');
       closeSheet();
     }
     document.getElementById('loc-confirm').addEventListener('click', confirmLocation);
 
-    /* ─────────────── CALENDAR ─────────────── */
-    var dpCursor, today;
-    (function initCal(){
-      today = new Date(); today.setHours(0,0,0,0);
-      dpCursor = new Date(today.getFullYear(), today.getMonth(), 1);
-    })();
-
+    /* CALENDAR */
+    var today = new Date(); today.setHours(0,0,0,0);
+    var dpCursor = new Date(today.getFullYear(), today.getMonth(), 1);
     function renderCalendar() {
       var MONTHS = ['January','February','March','April','May','June','July','August','September','October','November','December'];
-      document.getElementById('dp-month').textContent = MONTHS[dpCursor.getMonth()] + ' ' + dpCursor.getFullYear();
+      document.getElementById('dp-month').textContent = MONTHS[dpCursor.getMonth()]+' '+dpCursor.getFullYear();
       var days = new Date(dpCursor.getFullYear(), dpCursor.getMonth()+1, 0).getDate();
       var firstDow = new Date(dpCursor.getFullYear(), dpCursor.getMonth(), 1).getDay();
       var html = ['SU','MO','TU','WE','TH','FR','SA'].map(function(d){ return '<div class="dp-dow">'+d+'</div>'; }).join('');
@@ -528,16 +600,11 @@
         html += '<div class="'+cls+'" data-ts="'+dt.getTime()+'">'+d+'</div>';
       }
       document.getElementById('dp-grid').innerHTML = html;
-      document.getElementById('dp-grid').querySelectorAll('.dp-day:not(.past):not(.empty)').forEach(function(el){
+      document.getElementById('dp-grid').querySelectorAll('.dp-day:not(.past):not(.empty)').forEach(function(el) {
         el.addEventListener('click', function(){ selectedDate = new Date(parseInt(this.dataset.ts)); renderCalendar(); });
       });
-      // time select
-      var sel = document.getElementById('dp-time-select');
-      sel.innerHTML = TIMES.map(function(t){
-        return '<option value="'+t+'"'+(t===selectedTime?' selected':'')+'>'+t+'</option>';
-      }).join('');
+      document.getElementById('dp-time-select').innerHTML = TIMES.map(function(t){ return '<option value="'+t+'"'+(t===selectedTime?' selected':'')+'>'+t+'</option>'; }).join('');
     }
-
     document.getElementById('dp-prev').addEventListener('click', function(){ dpCursor.setMonth(dpCursor.getMonth()-1); renderCalendar(); });
     document.getElementById('dp-next').addEventListener('click', function(){ dpCursor.setMonth(dpCursor.getMonth()+1); renderCalendar(); });
     document.getElementById('dp-time-toggle').addEventListener('click', function(){
@@ -547,14 +614,13 @@
     document.getElementById('dp-time-select').addEventListener('change', function(){ selectedTime = this.value; });
     document.getElementById('dp-confirm').addEventListener('click', function(){
       if (!selectedDate) { closeSheet(); return; }
-      var MONTHS_SHORT = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-      var label = MONTHS_SHORT[selectedDate.getMonth()] + ' ' + selectedDate.getDate() + ' · ' + selectedTime;
-      var wv = document.getElementById('when-val');
-      wv.textContent = label; wv.classList.add('filled');
+      var MS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+      var el = document.getElementById('when-val');
+      el.textContent = MS[selectedDate.getMonth()]+' '+selectedDate.getDate()+' · '+selectedTime; el.classList.add('filled');
       closeSheet();
     });
 
-    /* ─────────────── SPACE TYPE ─────────────── */
+    /* SPACE TYPE */
     function renderChips() {
       document.getElementById('st-chips').innerHTML = SPACE_TYPES.map(function(s){
         return '<button class="st-chip'+(s.key===selectedType?' active':'')+'" data-key="'+s.key+'">'+s.label+'</button>';
@@ -565,12 +631,12 @@
     }
     document.getElementById('st-confirm').addEventListener('click', function(){
       var label = SPACE_TYPES.find(function(s){ return s.key===selectedType; }).label;
-      var tv = document.getElementById('type-val');
-      tv.textContent = label; tv.classList.toggle('filled', selectedType !== '');
+      var el = document.getElementById('type-val');
+      el.textContent = label; el.classList.toggle('filled', selectedType !== '');
       closeSheet();
     });
 
-    /* ─────────────── CAPACITY ─────────────── */
+    /* CAPACITY */
     function updateCap() {
       document.getElementById('cap-count').textContent = selectedCapacity;
       document.getElementById('cap-dec').disabled = selectedCapacity <= 1;
@@ -578,43 +644,23 @@
     document.getElementById('cap-dec').addEventListener('click', function(){ if(selectedCapacity>1){ selectedCapacity--; updateCap(); } });
     document.getElementById('cap-inc').addEventListener('click', function(){ selectedCapacity++; updateCap(); });
     document.getElementById('cap-confirm').addEventListener('click', function(){
-      var wv = document.getElementById('who-val');
-      wv.textContent = selectedCapacity === 1 ? 'Capacity' : selectedCapacity + ' people';
-      wv.classList.toggle('filled', selectedCapacity > 1);
+      var el = document.getElementById('who-val');
+      el.textContent = selectedCapacity === 1 ? 'Capacity' : selectedCapacity+' people';
+      el.classList.toggle('filled', selectedCapacity > 1);
       closeSheet();
     });
 
-    /* ─────────────── SEARCH ─────────────── */
+    /* SEARCH */
     document.getElementById('search-btn').addEventListener('click', function(){
       var address = selectedLocation || document.getElementById('loc-input').value.trim();
       if (!address) { openSheet('loc'); return; }
-      var params = new URLSearchParams({
-        Address: address,
-        IsFullTextSearch: 'true',
-        ReservationMethod: '0',
-        ReservationLengthMinutes: '60',
-        SortOrder: '0',
-        OverrideDefaultMemberGroups: 'true',
-        LastModifiedUtc: '0001-01-01T00:00:00'
-      });
+      var params = new URLSearchParams({ Address: address, IsFullTextSearch: 'true', ReservationMethod: '0', ReservationLengthMinutes: '60', SortOrder: '0', OverrideDefaultMemberGroups: 'true', LastModifiedUtc: '0001-01-01T00:00:00' });
       if (selectedType) params.set('SpaceType', selectedType);
       if (selectedCapacity > 1) params.set('Capacity', selectedCapacity);
-      window.location.href = 'https://liquidspace.com/search?' + params.toString();
+      window.location.href = 'https://liquidspace.com/search?'+params.toString();
     });
 
-    /* ─────────────── INIT ─────────────── */
-    renderCalendar();
-    renderChips();
-    updateCap();
-
-    // Wire sheet open to also init calendar
-    var origOpen = window.openSheet;
-    window.openSheet = function(name) {
-      origOpen(name);
-      if (name === 'cal') renderCalendar();
-      if (name === 'type') renderChips();
-    };
-
+    renderCalendar(); renderChips(); updateCap();
   })();
   </script>
 </body>
