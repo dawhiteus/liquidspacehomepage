@@ -1,0 +1,925 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LiquidSpace · Workplace Strategist</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700;9..40,800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#00293A; --blue:#00609C; --slate:#5B6670; --silver:#7C868D;
+    --rule:#E4E8EB; --wash:#F4F8FB; --tint:#EEF5F4; --max:1160px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{margin:0; background:#fff; color:var(--navy);
+       font-family:'DM Sans',system-ui,-apple-system,sans-serif; -webkit-font-smoothing:antialiased;}
+  .wrap{max-width:var(--max); margin:0 auto; padding:0 32px;}
+
+  /* ---------- wireframe placeholders ---------- */
+  .frame{border:1.5px dashed var(--blue); border-radius:6px; background:var(--wash);
+         display:table; width:100%; text-align:center; min-height:340px;}
+  .frame-cell{display:table-cell; vertical-align:middle; padding:40px 28px;}
+  .frame-in{max-width:80%; margin:0 auto;}
+  .frame-ref{font-size:9.5px; font-weight:800; letter-spacing:.12em; text-transform:uppercase;
+             color:var(--blue); margin-bottom:8px;}
+  .frame-t{font-size:15px; font-weight:800; margin-bottom:7px; line-height:1.3;}
+  .frame-d{font-size:11.5px; color:var(--slate); line-height:1.6;}
+
+  /* ---------- nav ---------- */
+  .nav{border-bottom:1px solid var(--rule); background:#fff;}
+  .nav .wrap{display:table; width:100%; height:78px;}
+  .nav-left{display:table-cell; vertical-align:middle; white-space:nowrap;}
+  .nav-right{display:table-cell; vertical-align:middle; text-align:right; white-space:nowrap;}
+  .mark{font-weight:800; font-size:21px; color:var(--navy); text-decoration:none;
+       white-space:nowrap; display:inline-block; vertical-align:middle; letter-spacing:-.4px;}
+  .mark i{width:30px; height:30px; border-radius:8px; background:var(--navy);
+          display:inline-block; vertical-align:-7px; margin-right:11px;}
+  .nav-links{display:inline-block; vertical-align:middle; margin-left:44px;}
+  .nav-links a{font-size:15px; font-weight:700; color:var(--navy); text-decoration:none;
+              margin-right:30px; white-space:nowrap;}
+  .nav-links a:last-child{margin-right:0;}
+  .nav-links a.nav-active{color:#2F5FA0;}
+  .nav-links a svg{margin-left:5px; vertical-align:1px;}
+  .nav-demo{font-size:15px; font-weight:800; color:var(--navy); text-decoration:none;
+           margin-right:22px;}
+  .nav-icon{color:var(--navy); text-decoration:none; vertical-align:middle; margin-right:18px;}
+  .nav-burger{width:40px; height:40px; border:1.5px solid var(--navy); border-radius:50%;
+             color:var(--navy); text-decoration:none; display:inline-flex; align-items:center;
+             justify-content:center; vertical-align:middle;}
+
+  /* ---------- buttons ---------- */
+  .btn{display:inline-block; background:var(--navy); color:#fff; text-decoration:none;
+       font-size:14px; font-weight:700; padding:13px 26px; border-radius:4px;}
+  .btn.ghost{background:transparent; color:var(--blue); border:1.5px solid var(--blue);}
+  .btn.light{background:#fff; color:var(--navy);}
+
+  /* ---------- shared type ---------- */
+  .eyebrow{font-size:10px; font-weight:800; letter-spacing:.14em; text-transform:uppercase;
+           color:var(--blue); margin-bottom:16px;}
+  .eyebrow em{font-style:normal; color:var(--silver); font-weight:700;}
+  .eyebrow em::before{content:"\00a0\00a0·\00a0\00a0";}
+  .payoff{font-size:28px; font-weight:800; line-height:1.28; letter-spacing:-.6px;}
+
+  /* ---------- hero ---------- */
+  .hero{padding:76px 0 96px;}
+  .hero-grid{display:table; width:100%; table-layout:fixed;}
+  .hero-copy{display:table-cell; width:46%; vertical-align:middle; padding-right:48px;}
+  .hero-media{display:table-cell; width:54%; vertical-align:middle;}
+  .hero .eyebrow{color:var(--blue);}
+  .hero h1{font-size:clamp(32px,4vw,50px); font-weight:800; line-height:1.2;
+           letter-spacing:-.8px; margin:0 0 22px;}
+  .hero h1 span{white-space:nowrap; display:block;}
+  .hero p{font-size:16px; color:var(--slate); line-height:1.66; margin:0 0 30px;}
+
+  /* ---------- hero product mockup: bar chart card + overlapping detail card ---------- */
+  .prod-mock{position:relative; padding-right:60px; padding-bottom:40px;}
+  .prod-mock-h{font-size:13px; font-weight:800; color:var(--navy); display:flex; align-items:center;
+              gap:8px; padding:20px 22px 0;}
+  .prod-mock-h .pm-ico{width:16px; height:16px; border-radius:4px; background:var(--blue); display:inline-block;}
+  .prod-mock-bars{display:flex; align-items:flex-end; gap:18px; height:170px; padding:24px 22px 0;
+                  background:#fff; border-radius:14px 14px 0 0; border:1px solid var(--rule);
+                  border-bottom:none;}
+  .pm-bar{flex:1; display:flex; flex-direction:column; align-items:center; justify-content:flex-end;
+         height:100%;}
+  .pm-fill{width:100%; border-radius:5px 5px 0 0;}
+  .pm-lbl{font-size:10.5px; color:var(--silver); font-weight:700; margin-top:8px;}
+  .pm-card{background:#fff; border-radius:0 0 14px 14px; border:1px solid var(--rule);
+          border-top:none; padding:18px 22px 22px;}
+  .pm-card-cols{display:table; width:100%; table-layout:fixed; margin-bottom:14px;}
+  .pm-card-cols div{display:table-cell; font-size:11px; color:var(--silver); font-weight:700;}
+  .pm-card-cols b{display:block; font-size:16px; color:var(--navy); font-weight:800; margin-top:3px;}
+  .pm-card-total{font-size:12.5px; color:var(--slate); border-top:1px solid var(--rule); padding-top:12px;}
+  .pm-card-total em{font-style:normal; font-weight:800; color:var(--navy);}
+
+  /* ---------- problem / solution: centered header, white cards on navy ---------- */
+  .ps{background:#2F5FA0; color:#fff; padding:88px 0;}
+  .ps-head{text-align:center; margin-bottom:48px;}
+  .ps h2{font-size:clamp(28px,3.6vw,42px); font-weight:800; line-height:1.2;
+         letter-spacing:-.7px; margin:0 auto 22px; max-width:20ch;}
+  .ps-rule{width:64px; height:3px; background:#A9D8D2; margin:0 auto; border-radius:2px;}
+  .ps-cols{display:table; width:100%; table-layout:fixed; border-spacing:24px 0; margin:0 -24px;}
+  .ps-col{display:table-cell; vertical-align:top; background:#fff; border-radius:14px;
+         padding:32px 34px;}
+  .ps-badge{display:flex; align-items:center; gap:12px; margin-bottom:18px;}
+  .ps-badge-icon{width:26px; height:26px; border-radius:50%; display:flex; align-items:center;
+                justify-content:center; flex-shrink:0;}
+  .ps-col.problem .ps-badge-icon{background:#FBEAE4; color:#D85A30;}
+  .ps-col.solution .ps-badge-icon{background:#EAF3DE; color:#4E8A22;}
+  .ps-l{font-size:19px; font-weight:800; color:var(--navy);}
+  .ps-col p{font-size:14.5px; line-height:1.7; color:var(--slate); margin:0;}
+
+  /* ---------- feature blocks ---------- */
+  .feat{padding:84px 0; border-bottom:1px solid var(--rule);}
+  /* portfolio compiler mockup: compact, fits the half-width media column */
+  .pc-mock{border:1px solid var(--rule); border-radius:14px; overflow:hidden;
+          box-shadow:0 1px 3px rgba(0,41,58,.06); background:#fff;}
+  .pc-mock-h{display:table; width:100%; padding:16px 18px; border-bottom:1px solid var(--rule);}
+  .pc-mock-h > *{display:table-cell; vertical-align:middle;}
+  .pc-mock-t{font-size:14px; font-weight:800; color:var(--navy);}
+  .pc-mock-h .pc-badge-ai{text-align:right;}
+  .pc-badge-ai{font-size:10.5px; font-weight:700; color:#fff; background:var(--blue);
+              padding:5px 10px; border-radius:6px;}
+  .pc-stats-sm{display:table; width:100%; table-layout:fixed; background:#F8F9FA;
+             padding:14px 16px; border-spacing:8px 0; margin:0 -8px;}
+  .pc-stat{display:table-cell; background:#fff; border:1px solid #E5E7EB;
+          border-radius:10px; padding:10px 12px;}
+  .pc-stat-l{font-size:9px; font-weight:700; letter-spacing:.03em; text-transform:uppercase;
+            color:#6B7280;}
+  .pc-stat-v{font-size:17px; font-weight:800; color:#374151; margin-top:4px;}
+  .pc-table-sm{padding:14px 18px 16px;}
+  .pc-sorted-sm{font-size:11px; color:#9CA3AF; margin-bottom:10px;}
+  .pc-row-sm{display:table; width:100%; padding:10px 0; border-bottom:1px solid #F1F3F5;}
+  .pc-row-sm:last-child{border-bottom:none; padding-bottom:0;}
+  .pc-row-sm > div{display:table-cell; vertical-align:top;}
+  .pc-row-sm > span{display:table-cell; vertical-align:top; text-align:right; white-space:nowrap;}
+  .pc-city{font-size:13px; font-weight:700; color:#374151;}
+  .pc-signal{font-size:11px; color:#6B7280; margin-top:2px; line-height:1.4;}
+  .pc-badge{font-size:10.5px; font-weight:700; padding:4px 10px; border-radius:999px;}
+  .pc-badge-amber{background:#FDECD8; color:#9A5B13;}
+  .pc-badge-blue{background:#E1EEF9; color:#0C5FA0;}
+  .pc-badge-gray{background:#F1F1F1; color:#5B5B5B;}
+
+  .feat-wash{background:var(--wash); border-bottom-color:transparent;}
+  .feat-grid{display:table; width:100%; table-layout:fixed;}
+  .feat-copy,.feat-media{display:table-cell; vertical-align:middle; width:50%;}
+  .feat-copy{padding-right:48px;}
+  .feat-flip .feat-copy{padding-right:0; padding-left:48px;}
+  .feat-head{margin-bottom:18px;}
+  .feat h2{font-size:clamp(23px,2.7vw,31px); font-weight:800; line-height:1.24;
+           letter-spacing:-.5px; margin:0 0 18px;}
+  .feat h2 .nowrap-line{white-space:nowrap; display:block;}
+  .feat p{font-size:15px; color:var(--slate); line-height:1.72; margin:0 0 26px;}
+  .checks{list-style:none; margin:0; padding:0;}
+  .checks li{position:relative; padding-left:30px; font-size:14.5px; font-weight:500;
+             line-height:1.5; margin-bottom:14px;}
+  .checks li::before{content:""; position:absolute; left:0; top:0; width:19px; height:19px;
+                     background-repeat:no-repeat; background-size:contain;
+                     background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2300609C' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='10'/%3E%3Cpath d='M8.5 12.5l2.3 2.3L16 10'/%3E%3C/svg%3E");}
+
+  /* ---------- outline button (module sections, white/wash background) ---------- */
+  .btn.outline{background:#fff; color:var(--navy); border:1.5px solid var(--navy);}
+  .feat-body .btn{margin-top:6px;}
+
+  /* ---------- illustration: hub viability card ---------- */
+  .illo-wrap{display:flex; justify-content:center; padding:20px; position:relative;}
+  .illo-wrap.illo-wrap--tall{padding-bottom:95px;}
+  .illo-card{width:100%; max-width:380px; background:#fff; border-radius:14px;
+             border:1px solid var(--rule);
+             box-shadow:0 20px 45px -12px rgba(0,41,58,0.16), 0 4px 12px rgba(0,41,58,0.06);
+             padding:24px 24px 22px; text-align:left;}
+  .illo-head{display:flex; align-items:center; gap:10px; margin-bottom:16px;}
+  .illo-icon{width:28px; height:28px; border-radius:8px; background:var(--wash);
+             display:flex; align-items:center; justify-content:center; flex-shrink:0;}
+  .illo-title{font-size:14.5px; font-weight:700; color:var(--navy);}
+  .illo-score-row{display:flex; align-items:center; justify-content:space-between; margin-bottom:16px;}
+  .illo-score{font-size:36px; font-weight:800; color:var(--navy); line-height:1;}
+  .illo-score span{font-size:15px; font-weight:700; color:var(--silver);}
+  .illo-pill{font-size:11px; font-weight:800; padding:5px 11px; border-radius:20px;
+             background:#FDF3E3; color:#B8790A; white-space:nowrap;}
+  .illo-metrics{display:flex; flex-direction:column; gap:11px; padding-top:14px;
+                border-top:1px solid var(--rule);}
+  .illo-mrow{display:flex; align-items:center; gap:11px;}
+  .illo-mlabel{font-size:12px; font-weight:600; color:var(--navy); width:86px; flex-shrink:0;}
+  .illo-mtrack{flex:1; height:6px; background:#EEF1F3; border-radius:4px; overflow:hidden;}
+  .illo-mfill{height:100%; border-radius:4px;}
+  .illo-mnum{font-size:12.5px; font-weight:800; width:20px; text-align:right; flex-shrink:0;}
+  .illo-foot{margin-top:16px; padding-top:12px; border-top:1px solid var(--rule);
+             font-size:11.5px; color:var(--slate); line-height:1.5;}
+
+  /* ---------- illustration: portfolio planning considerations (muted tier table + dominant card + EC/WD accent) ---------- */
+  .illo2-stage{position:relative; width:100%; max-width:460px; height:330px; margin:0 auto;}
+  .illo2-bg{position:absolute; top:12px; left:0; width:210px; background:#FBFCFD;
+            border-radius:14px; border:1px solid #EEF1F3;
+            box-shadow:0 8px 20px -8px rgba(0,41,58,0.08);
+            padding:14px 16px; text-align:left; opacity:0.9;}
+  .illo2-bg-colhead{display:flex; gap:10px; font-size:8.5px; font-weight:800; letter-spacing:.06em;
+                    color:#B0B8BC; text-transform:uppercase; padding-bottom:8px;
+                    border-bottom:1px solid #EEF1F3;}
+  .illo2-bg-col1{width:66px;} .illo2-bg-col2{width:56px;} .illo2-bg-col3{flex:1; text-align:right;}
+  .illo2-bg-row{display:flex; align-items:center; gap:10px; padding:9px 0; border-bottom:1px solid #EEF1F3;}
+  .illo2-bg-tier{font-size:9px; font-weight:700; padding:2px 8px; border-radius:9px;
+                 width:66px; text-align:center; box-sizing:border-box; border:1px solid;}
+  .illo2-bg-market{width:56px; font-size:10.5px; font-weight:600; color:#8B949A;}
+  .illo2-bg-seats{flex:1; text-align:right; font-size:10.5px; color:#B0B8BC;}
+
+  .illo2-card{position:absolute; top:0; left:130px; width:320px; background:#fff;
+              border-radius:16px; border:1px solid var(--rule);
+              box-shadow:0 26px 55px -14px rgba(0,41,58,0.22), 0 6px 16px rgba(0,41,58,0.08);
+              padding:18px 18px 4px; text-align:left;}
+  .illo2-head{display:flex; align-items:center; gap:10px; margin-bottom:12px;}
+  .illo2-prow{display:flex; align-items:center; gap:9px; padding:11px 0;
+              border-top:1px solid var(--rule);}
+  .illo2-check{width:20px; height:20px; border-radius:50%; display:flex; align-items:center;
+               justify-content:center; flex-shrink:0;}
+  .illo2-plabel{font-size:11.5px; font-weight:600; color:var(--navy); flex:1; line-height:1.3;}
+  .illo2-ppill{font-size:10.5px; font-weight:800; color:#3E8C5A; background:#EAF4EC;
+               padding:4px 9px; border-radius:13px; white-space:nowrap; flex-shrink:0;}
+  .illo2-pchev{color:#C7CED2; flex-shrink:0; display:flex;}
+
+  .illo2-ecwd{position:absolute; left:170px; top:222px; background:#fff;
+              border-radius:14px; border:1px solid var(--rule);
+              box-shadow:0 20px 40px -12px rgba(0,41,58,0.20), 0 4px 10px rgba(0,41,58,0.08);
+              padding:12px 14px 14px;}
+  .illo2-ecwd-title{font-size:10.5px; font-weight:700; color:var(--navy); margin-bottom:8px;}
+  .illo2-ecwd-cells{display:flex; gap:7px;}
+  .illo2-ecwd-cell{border-radius:9px; padding:7px 13px; text-align:center; min-width:76px;}
+  .illo2-ecwd-label{font-size:7.5px; font-weight:800; letter-spacing:.05em; text-transform:uppercase;
+                    margin-bottom:3px;}
+  .illo2-ecwd-val{font-size:14px; font-weight:800; line-height:1;}
+
+  /* ---------- illustration: floating economics overlay ---------- */
+  .illo-overlay{position:absolute; right:35px; bottom:-18px; width:190px; background:#fff;
+                border-radius:12px; border:1px solid var(--rule);
+                box-shadow:0 16px 32px -10px rgba(0,41,58,0.20), 0 3px 8px rgba(0,41,58,0.08);
+                padding:14px 16px 15px; text-align:left;}
+  .illo-ov-label{font-size:9.5px; font-weight:800; letter-spacing:.08em; text-transform:uppercase;
+                 color:var(--silver); margin-bottom:8px;}
+  .illo-ov-costs{display:flex; gap:14px; margin-bottom:10px;}
+  .illo-ov-cost-label{font-size:9.5px; color:var(--silver); font-weight:600; margin-bottom:2px;}
+  .illo-ov-cost-val{font-size:13px; font-weight:800; color:var(--navy);}
+  .illo-ov-div{border-top:1px solid var(--rule); margin-bottom:10px;}
+  .illo-ov-net-label{font-size:10.5px; color:var(--slate); font-weight:600; margin-bottom:2px;}
+  .illo-ov-net-val{font-size:22px; font-weight:800; color:#B84A3E; line-height:1;}
+
+  /* ---------- defensibility: full-bleed statement banner ---------- */
+  .defend-banner{background:var(--wash); padding:72px 0 76px;}
+  .db-eyebrow{font-size:11px; font-weight:800; letter-spacing:.14em; text-transform:uppercase;
+             color:var(--blue); margin-bottom:20px;}
+  .db-h2{font-size:clamp(28px,3.5vw,40px); font-weight:800; line-height:1.22;
+         letter-spacing:-.7px; margin:0 0 20px; color:var(--navy);}
+  .db-h2 .nowrap-line{white-space:nowrap; display:block;}
+  .db-p{font-size:16px; color:var(--slate); line-height:1.7; max-width:56ch; margin:0 0 40px;}
+
+
+  /* ---------- trust carousel ---------- */
+  .trust{padding:64px 0 76px; border-top:1px solid var(--rule);}
+  .trust-head{display:table; width:100%; margin-bottom:26px;}
+  .trust-eyebrow{display:table-cell; vertical-align:middle; font-size:11px; font-weight:800;
+                letter-spacing:.14em; text-transform:uppercase; color:var(--blue);}
+  .db-strip{display:table; width:100%; table-layout:fixed; margin-top:44px;
+           background:#fff; border:1px solid var(--rule); border-radius:12px;}
+  .db-cell{display:table-cell; vertical-align:top; padding:26px 28px;
+          border-left:1px solid var(--rule);}
+  .db-cell:first-child{border-left:none;}
+  .db-icon{width:34px; height:34px; border-radius:9px; background:var(--wash);
+            display:flex; align-items:center; justify-content:center; margin-bottom:14px;}
+  .db-t{font-size:15px; font-weight:800; color:var(--navy); margin-bottom:9px; line-height:1.3;}
+  .db-d{font-size:13px; color:var(--slate); line-height:1.55;}
+
+  /* ---------- platform ---------- */
+  /* platform block: same feat-grid/frame structure as the modules, but on navy */
+  .plat-feat{background:var(--navy); border-bottom:none;}
+  .plat-feat .eyebrow{color:#8FC1E3;}
+  .plat-feat h2{color:#fff;}
+  .plat-feat .feat-body p{color:#B9CBD6;}
+  .plat-feat .checks li{color:#fff;}
+  .plat-feat .checks li::before{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%238FC1E3' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='10'/%3E%3Cpath d='M8.5 12.5l2.3 2.3L16 10'/%3E%3C/svg%3E");}
+  .plat-feat .btn.outline{background:transparent; color:#fff; border-color:#fff;}
+  .plat-checks li{margin-bottom:15px;}
+  .plat-checks li b{display:block; color:#fff; font-weight:800; margin-bottom:4px;}
+  .plat-checks li span{display:block; font-size:13px; color:rgba(255,255,255,.6); line-height:1.55;}
+  .plat-feat .checks li::before{border-color:#8FC1E3;}
+  .plat-feat .frame{border-color:rgba(255,255,255,.28); background:rgba(255,255,255,.04);}
+  .video-frame{border-style:solid !important;}
+  .play-btn{width:56px; height:56px; border-radius:50%; background:#fff; color:var(--navy);
+           display:flex; align-items:center; justify-content:center; margin:0 auto 18px;
+           box-shadow:0 2px 10px rgba(0,0,0,.25);}
+  .play-btn svg{margin-left:3px;}
+  .plat-feat .frame-ref{color:#8FC1E3;}
+  .plat-feat .frame-t{color:#fff;}
+  .plat-feat .frame-d{color:rgba(255,255,255,.55);}
+  .plat-return{font-size:13px; color:rgba(255,255,255,.5); line-height:1.6; margin-top:22px;
+              padding-top:18px; border-top:1px solid rgba(255,255,255,.16);}
+  .layer.compact{padding:20px; display:table-cell; vertical-align:middle;}
+  .layer.compact .layer-l{margin-bottom:8px;}
+  .layer.compact .layer-t{font-size:14px; margin-bottom:0; line-height:1.4;}
+
+
+  /* ---------- faq ---------- */
+  .faq{padding:96px 0; border-top:1px solid var(--rule);}
+  .faq-grid{display:table; width:100%; table-layout:fixed;}
+  .faq-head{display:table-cell; width:32%; vertical-align:top; padding-right:48px;}
+  .faq-head h2{font-size:clamp(30px,3.4vw,42px); font-weight:800; color:var(--navy);
+              letter-spacing:-.7px; line-height:1.18; margin:0 0 18px;}
+  .faq-head p{font-size:15px; color:var(--slate); line-height:1.6; margin:0; max-width:32ch;}
+  .faq-list{display:table-cell; width:68%; vertical-align:top;}
+  .faq-item{border-bottom:1px solid var(--rule);}
+  .faq-item:first-child{border-top:1px solid var(--rule);}
+  .faq-q{width:100%; display:flex; align-items:center; gap:18px; padding:22px 4px;
+        background:none; border:none; cursor:pointer; font-family:inherit; text-align:left;}
+  .faq-icon{width:26px; height:26px; border-radius:50%; background:var(--navy); color:#fff;
+           display:flex; align-items:center; justify-content:center; flex-shrink:0;
+           transition:transform .2s ease;}
+  .faq-qtext{font-size:17px; font-weight:700; color:var(--navy); line-height:1.4;}
+  .faq-q[aria-expanded="true"] .faq-icon{transform:rotate(180deg);}
+  .faq-a{max-height:0; overflow:hidden; transition:max-height .2s ease;}
+  .faq-a p{font-size:14.5px; line-height:1.7; color:var(--slate); margin:0; padding:0 4px 24px 44px;}
+
+  /* ---------- close ---------- */
+  .close{background:#2F5FA0; color:#fff; padding:84px 0; text-align:center;}
+  .close-eyebrow{font-size:13px; font-weight:800; letter-spacing:.14em; text-transform:uppercase;
+                color:#A9D8C2; margin-bottom:24px;}
+  .close h2{font-size:clamp(30px,3.8vw,44px); font-weight:800; line-height:1.2;
+            letter-spacing:-.7px; margin:0 auto 24px; max-width:16ch;}
+  .close p{font-size:17px; color:rgba(255,255,255,.85); line-height:1.6; max-width:44ch;
+           margin:0 auto 36px;}
+
+  .foot{padding:34px 0; font-size:12px; color:var(--silver);}
+  .foot .wrap{display:table; width:100%;}
+  .foot .wrap span{display:table-cell;}
+  .foot .wrap span:last-child{text-align:right;}
+
+  .note{background:#FFF8E7; border-left:3px solid #E0A93B; padding:14px 18px;
+        font-size:12.5px; color:#6B5320; line-height:1.6; margin:0 0 34px; border-radius:0 4px 4px 0;}
+  .note b{color:#4A3812;}
+
+  @media (max-width:860px){
+    .ps-cols,.layers,.hero-grid,.faq-grid{display:block; margin:0; border-spacing:0;}
+    .ps-col,.hero-copy,.hero-media{display:block; margin-bottom:18px;
+      width:auto; padding-right:0;}
+    .faq-head,.faq-list{display:block; width:auto; padding-right:0;}
+    .faq-head{margin-bottom:32px;}
+    .feat-grid{display:flex; flex-direction:column; margin:0; border-spacing:0;}
+    .feat-copy,.feat-flip .feat-copy{display:contents; padding:0; width:auto;}
+    .feat-head{order:1; width:auto;}
+    .feat-media{order:2; display:block; width:auto; margin:18px 0;}
+    .feat-body{order:3; width:auto;}
+    .prod-mock{padding-right:0;}
+    .pc-stats-sm{display:block; padding:12px; border-spacing:0; margin:0;}
+    .pc-stat{display:block; margin-bottom:8px;}
+    .pc-stat:last-child{margin-bottom:0;}
+    .pc-row-sm{display:block; padding:10px 0;}
+    .pc-row-sm > div,.pc-row-sm > span{display:block; width:auto; text-align:left;}
+    .pc-row-sm > span{margin-top:6px;}
+    .nav-links{display:none;}
+    .nav-demo{display:none;}
+    .mark{font-size:18px;}
+    .db-strip{display:block; margin-top:32px;}
+    .db-cell{display:block; border-left:none; border-top:1px solid var(--rule);
+            padding:20px 22px;}
+    .db-cell:first-child{border-top:none;}
+    .payoff{font-size:22px;}
+    .defend-banner{padding:64px 0;}
+    .hero{padding:52px 0 44px;}
+  }
+  @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto;}}
+
+  /* ---- Portfolio Compiler dashboard illustration ---- */
+
+  @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&display=swap');
+
+  .pcn-stage{position:relative; width:640px; height:560px;}
+
+  /* ---- dominant: combined dashboard card ---- */
+  .pcn-dash{
+    position:absolute; top:30px; left:0; width:460px; background:#fff;
+    border-radius:18px; border:1px solid var(--line);
+    box-shadow:0 30px 60px -16px rgba(0,41,58,0.22), 0 8px 18px rgba(0,41,58,0.08);
+    padding:26px 28px 24px;
+  }
+  .pcn-dash-label{font-size:10px; font-weight:800; letter-spacing:.06em; color:var(--silver); margin-bottom:6px;}
+  .pcn-dash-sub{font-size:14px; font-weight:700; color:var(--navy); margin-bottom:18px;}
+
+  .pcn-dash-headline{font-size:34px; font-weight:800; color:var(--navy); line-height:1;}
+  .pcn-dash-headline-label{font-size:12px; color:var(--slate); font-weight:600; margin:5px 0 14px;}
+
+  .pcn-dash-bar{display:flex; height:8px; border-radius:4px; overflow:hidden; margin-bottom:8px;}
+  .pcn-dash-legend{display:flex; gap:16px; margin-bottom:20px;}
+  .pcn-dash-leg-item{display:flex; align-items:center; gap:5px; font-size:10.5px; color:var(--slate); font-weight:600;}
+  .pcn-dash-dot{width:7px; height:7px; border-radius:50%; flex-shrink:0;}
+
+  .pcn-dash-exports{border-top:1px solid var(--line); padding-top:16px;}
+  .pcn-dash-exports-label{font-size:9.5px; font-weight:800; letter-spacing:.06em; color:var(--silver); margin-bottom:10px;}
+  .pcn-export-row{display:flex; align-items:center; gap:11px; padding:9px 14px; border:1px solid var(--line);
+                  border-radius:22px; margin-bottom:7px;}
+  .pcn-export-row:last-child{margin-bottom:0;}
+  .pcn-export-icon{width:20px; height:20px; display:flex; align-items:center; justify-content:center; flex-shrink:0;}
+  .pcn-export-text{flex:1; font-size:12px; font-weight:600; color:var(--navy);}
+  .pcn-export-dl{color:var(--silver); flex-shrink:0; display:flex;}
+
+  /* ---- overlay: cost/seat/month bell curve, top-right ---- */
+  .pcn-dist-card{
+    position:absolute; top:0; left:355px; width:245px; background:#fff;
+    border-radius:16px; border:1px solid var(--line);
+    box-shadow:0 26px 52px -14px rgba(0,41,58,0.24), 0 8px 18px rgba(0,41,58,0.09);
+    padding:18px 20px 16px;
+  }
+  .pcn-dist-label{font-size:9.5px; font-weight:800; letter-spacing:.05em; color:var(--silver); margin-bottom:8px;}
+  .pcn-dist-vals{display:flex; justify-content:space-between; margin-top:6px;}
+  .pcn-dist-val{text-align:center;}
+  .pcn-dist-val b{display:block; font-size:14px; font-weight:800; color:var(--navy);}
+  .pcn-dist-val span{font-size:9px; color:var(--silver); font-weight:600;}
+  .pcn-dist-val.pcn-med b{color:var(--blue);}
+
+</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What data do I need to get started?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "If you've transacted through LiquidSpace, your existing LiquidSpace data gives you a head start. Traditional leases and licenses signed elsewhere can be added through an intake process, so you can build from the full portfolio picture."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What if my portfolio data is incomplete?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "You can still start with incomplete data. Workplace Strategist identifies which inputs are confirmed, estimated, or benchmarked, so you can see where the analysis is well supported, where uncertainty remains, and where better data could strengthen it."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How current is the analysis as my portfolio changes?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Workplace Strategist gives you a standing view of the portfolio, not a one-time analysis. As demand, utilization, commitments, and other inputs change, you can reevaluate where attention is needed and whether the current strategy still holds."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does Workplace Strategist always recommend making a change?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Renewing, staying put, or staying flexible can all be valid outcomes. Workplace Strategist shows what the analysis supports, including when the case for change isn't strong enough."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I see where the numbers and recommendations come from?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Inputs, assumptions, sources, and confidence remain visible throughout the analysis, so you can understand what each result is based on and what could change it."
+      }
+    }
+  ]
+}
+</script>
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap">
+    <div class="nav-left">
+      <a class="mark" href="#"><i></i>LiquidSpace</a>
+      <nav class="nav-links">
+        <a href="#" class="nav-active">Solutions
+          <svg width="11" height="7" viewBox="0 0 12 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 1.5L6 6.5L11 1.5"/></svg>
+        </a>
+        <a href="#">How it Works</a>
+        <a href="#">Resources</a>
+        <a href="#">Pricing</a>
+      </nav>
+    </div>
+    <div class="nav-right">
+      <a class="nav-demo" href="#demo">Get demo</a>
+      <a class="nav-icon" href="#" aria-label="Search">
+        <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+      </a>
+      <a class="nav-burger" href="#" aria-label="Menu">
+        <svg width="15" height="11" viewBox="0 0 16 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M1 1h14M1 6h14M1 11h14"/></svg>
+      </a>
+    </div>
+  </div>
+</header>
+
+<!-- ============ HERO ============ -->
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div class="hero-copy">
+      <h1><span>Get the size and mix</span><span>of your portfolio right.</span></h1>
+      <p>See your leased and flex footprint as one portfolio. Workplace Strategist is your
+         planning tool for where to focus, when to commit, and when to flex.</p>
+      <a class="btn" href="#demo">Get demo</a>
+    </div>
+    <div class="hero-media">
+      <div style="width:100%; max-width:600px; margin:0 auto;">
+        <div class="frame">
+          <div class="frame-cell"><div class="frame-in">
+            <div class="frame-ref">Portfolio Planning</div>
+            <div class="frame-t">12 locations · $9.2M annual spend</div>
+            <div class="frame-d">Lease / License / On-demand mix, plus a Considerations panel with Effective Cost per Work Day.</div>
+          </div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PROBLEM / SOLUTION ============ -->
+<section class="ps">
+  <div class="wrap">
+    <div class="ps-head">
+      <h2>Your portfolio never stands still.</h2>
+      <div class="ps-rule"></div>
+    </div>
+    <div class="ps-cols">
+      <div class="ps-col problem">
+        <div class="ps-badge">
+          <div class="ps-badge-icon">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><path d="M5 5l14 14M19 5L5 19"/></svg>
+          </div>
+          <div class="ps-l">Problem</div>
+        </div>
+        <p>A lease comes due. Demand builds in a new location. Utilization shifts. But the
+           information you need to make the right call is scattered across spreadsheets,
+           inboxes, and side conversations.</p>
+      </div>
+      <div class="ps-col solution">
+        <div class="ps-badge">
+          <div class="ps-badge-icon">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12l5 5L20 6"/></svg>
+          </div>
+          <div class="ps-l">Solution</div>
+        </div>
+        <p>Workplace Strategist brings your portfolio, workforce demand, utilization, booking
+           activity, commitments, and market intelligence together, giving you a standing
+           view of what your portfolio needs as conditions change.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ WHERE TO FOCUS ============ -->
+<section class="feat">
+  <div class="wrap feat-grid">
+    <div class="feat-copy">
+      <div class="feat-head">
+        <div class="eyebrow">Where to focus</div>
+        <h2><span class="nowrap-line">See where your portfolio</span><span class="nowrap-line">needs attention.</span></h2>
+      </div>
+      <div class="feat-body">
+        <p>Portfolio Compiler brings together your leased space, flex agreements, and
+           on-demand bookings to show where attention is needed most and why.</p>
+        <ul class="checks">
+          <li>See where exposure or opportunity sits, not just what's expiring next.</li>
+          <li>Understand the financial, workforce, and commitment signals behind each location.</li>
+          <li>See where the evidence supports more commitment or more flexibility.</li>
+        </ul>
+        <a class="btn outline" href="#demo">Get demo</a>
+      </div>
+    </div>
+    <div class="feat-media">
+      <div style="width:100%; max-width:600px; margin:0 auto;">
+        <div class="pc-mock">
+          <div class="pc-mock-h">
+            <div class="pc-mock-t">Portfolio Compiler</div>
+            <div class="pc-badge-ai">AI-assisted</div>
+          </div>
+          <div class="pc-stats-sm">
+            <div class="pc-stat"><div class="pc-stat-l">Locations</div><div class="pc-stat-v">12</div></div>
+            <div class="pc-stat"><div class="pc-stat-l">Needs review</div><div class="pc-stat-v">4</div></div>
+            <div class="pc-stat"><div class="pc-stat-l">Annual spend</div><div class="pc-stat-v">$9.2M</div></div>
+          </div>
+          <div class="pc-table-sm">
+            <div class="pc-sorted-sm">Sorted by attention needed</div>
+            <div class="pc-row-sm">
+              <div><div class="pc-city">New York — Lease</div><div class="pc-signal">Renewal window opens in 90 days</div></div>
+              <span><span class="pc-badge pc-badge-amber">Review</span></span>
+            </div>
+            <div class="pc-row-sm">
+              <div><div class="pc-city">Austin — Lease</div><div class="pc-signal">Utilization down 22% vs. last quarter</div></div>
+              <span><span class="pc-badge pc-badge-amber">Review</span></span>
+            </div>
+            <div class="pc-row-sm">
+              <div><div class="pc-city">Seattle — License</div><div class="pc-signal">Demand concentrated near two hubs</div></div>
+              <span><span class="pc-badge pc-badge-blue">Opportunity</span></span>
+            </div>
+            <div class="pc-row-sm">
+              <div><div class="pc-city">Denver — On-demand</div><div class="pc-signal">Stable, no action needed</div></div>
+              <span><span class="pc-badge pc-badge-gray">Stable</span></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ WHERE TO COMMIT ============ -->
+<section class="feat feat-wash">
+  <div class="wrap feat-grid feat-flip">
+    <div class="feat-media">
+      <div class="illo-wrap illo-wrap--tall">
+        <div class="illo-card">
+          <div class="illo-head">
+            <div class="illo-icon">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#00609C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 14l4-4 3 3 5-6"/></svg>
+            </div>
+            <div class="illo-title">Hub Viability Score</div>
+          </div>
+          <div class="illo-score-row">
+            <div class="illo-score">78<span>/100</span></div>
+            <div class="illo-pill">Strong Buy</div>
+          </div>
+          <div class="illo-metrics">
+            <div class="illo-mrow"><div class="illo-mlabel">Demand</div><div class="illo-mtrack"><div class="illo-mfill" style="width:85%; background:#29A74A;"></div></div><div class="illo-mnum">85</div></div>
+            <div class="illo-mrow"><div class="illo-mlabel">Concentration</div><div class="illo-mtrack"><div class="illo-mfill" style="width:83%; background:#FAA51A;"></div></div><div class="illo-mnum">83</div></div>
+            <div class="illo-mrow"><div class="illo-mlabel">Economics</div><div class="illo-mtrack"><div class="illo-mfill" style="width:50%; background:#B94B3F;"></div></div><div class="illo-mnum">5</div></div>
+          </div>
+          <div class="illo-foot">Strong workforce fit. Strong ROI.</div>
+        </div>
+        <div class="illo-overlay">
+          <div class="illo-ov-label">Business Case</div>
+          <div class="illo-ov-costs">
+            <div><div class="illo-ov-cost-label">Current</div><div class="illo-ov-cost-val">$50.4K</div></div>
+            <div><div class="illo-ov-cost-label">Hub Cost</div><div class="illo-ov-cost-val">$19.2K</div></div>
+          </div>
+          <div class="illo-ov-div"></div>
+          <div class="illo-ov-net-label">Net Savings</div>
+          <div class="illo-ov-net-val">+$26,400</div>
+        </div>
+      </div>
+    </div>
+    <div class="feat-copy">
+      <div class="feat-head">
+        <div class="eyebrow">When to commit</div>
+        <h2><span class="nowrap-line">Know when demand</span><span class="nowrap-line">has earned a hub.</span></h2>
+      </div>
+      <div class="feat-body">
+        <p>Hub Locator uses actual booking behavior and market economics to show where
+           dedicated space makes sense and where on-demand is still the better fit.</p>
+        <ul class="checks">
+          <li>See how demand is distributed and concentrated across the market.</li>
+          <li>Shape the size and configuration around how people actually work.</li>
+          <li>Test whether the economics hold up before committing.</li>
+        </ul>
+        <a class="btn outline" href="#demo">Get demo</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ WHICH MODEL FITS ============ -->
+<section class="feat">
+  <div class="wrap feat-grid">
+    <div class="feat-copy">
+      <div class="feat-head">
+      <div class="eyebrow">When to flex</div>
+      <h2><span class="nowrap-line">Know when more flexibility</span><span class="nowrap-line">makes sense.</span></h2>
+    </div>
+      <div class="feat-body">
+      <p>Scenario Modeler compares the viable options for a location on the same economic
+         basis, making the costs and trade-offs clear.</p>
+      <ul class="checks">
+        <li>Compare flex, hub, blended, and renewal approaches side by side.</li>
+        <li>Stress-test attendance, capacity, and pricing to see how the economics change.</li>
+        <li>Carry a supported scenario into a sourcing requirement.</li>
+      </ul>
+      <a class="btn outline" href="#demo">Get demo</a>
+    </div>
+    </div>
+    <div class="feat-media">
+      <div class="illo2-stage">
+        <div class="illo2-bg">
+          <div class="illo2-bg-colhead">
+            <div class="illo2-bg-col1">Option</div><div class="illo2-bg-col2">Cost</div><div class="illo2-bg-col3">EC/WD</div>
+          </div>
+          <div class="illo2-bg-row"><div class="illo2-bg-tier" style="border-color:#DDE1E4; color:#8B949A;">Current</div><div class="illo2-bg-seats">$272.73</div></div>
+          <div class="illo2-bg-row"><div class="illo2-bg-tier" style="border-color:#DDE1E4; color:#8B949A;">Hub</div><div class="illo2-bg-seats">$34.09</div></div>
+          <div class="illo2-bg-row"><div class="illo2-bg-tier" style="border-color:#DDE1E4; color:#8B949A;">Blended</div><div class="illo2-bg-seats">$36.67</div></div>
+        </div>
+        <div class="illo2-card">
+          <div class="illo2-head"><div class="illo2-title" style="font-size:14px;font-weight:800;color:#00293A;">Compare Options</div></div>
+          <div class="illo2-prow"><div class="illo2-plabel">Renew current lease</div><div class="illo2-ppill">$1.2M/yr</div></div>
+          <div class="illo2-prow"><div class="illo2-plabel">Hub &amp; Spoke</div><div class="illo2-ppill">$161K/yr</div></div>
+          <div class="illo2-prow"><div class="illo2-plabel">Evaluate flex</div><div class="illo2-ppill" style="background:#FDECD8;color:#9A5B13;">↓ 90%</div></div>
+        </div>
+        <div class="illo2-ecwd">
+          <div class="illo2-ecwd-title">Requirement opened</div>
+          <div class="illo2-ecwd-cells">
+            <div class="illo2-ecwd-cell" style="background:#EBF5ED;"><div class="illo2-ecwd-label" style="color:#3E8C5A;">Ready</div><div class="illo2-ecwd-val" style="color:#3E8C5A;">Sourcing</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PLATFORM ============ -->
+<section class="feat plat-feat">
+  <div class="wrap feat-grid">
+    <div class="feat-copy">
+      <div class="feat-head">
+        <div class="eyebrow">From planning to execution</div>
+        <h2><span class="nowrap-line">Put your strategy</span><span class="nowrap-line">into action.</span></h2>
+      </div>
+      <div class="feat-body">
+        <p>Workplace Strategist sits within the LiquidSpace Workplace Platform, connecting
+           planning to the sourcing, transactions, and agreements that follow, so context
+           carries forward and what happens next can inform the next decision.</p>
+      </div>
+    </div>
+    <div class="feat-media">
+      <div class="frame video-frame">
+        <div class="frame-cell"><div class="frame-in">
+          <div class="play-btn" aria-hidden="true">
+            <svg width="20" height="22" viewBox="0 0 20 22" fill="currentColor"><path d="M1 1.5v19a1 1 0 0 0 1.5.87l17-9.5a1 1 0 0 0 0-1.74l-17-9.5A1 1 0 0 0 1 1.5z"/></svg>
+          </div>
+          <div class="frame-ref">Video: 1:00</div>
+          <div class="frame-t">The platform, end to end</div>
+          <div class="frame-d">Composed of the same pulled-out product moments, in motion: a
+            portfolio finding card transitions into a requirement card, then a sourcing card,
+            not a raw screen recording.</div>
+        </div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ DEFENSIBILITY ============ -->
+<section class="defend-banner">
+  <div class="wrap">
+    <div class="db-eyebrow">Defend every decision</div>
+    <h2 class="db-h2"><span class="nowrap-line">Make the call.</span><span class="nowrap-line">Show the case behind it.</span></h2>
+    <p class="db-p">Give CRE, Finance, and leadership a shared view of the demand, economics,
+       assumptions, and source data behind every decision.</p>
+
+    <div class="db-strip">
+      <div class="db-cell">
+        <div class="db-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#00609C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="9"/>
+          </svg>
+        </div>
+        <div class="db-t">Confidence without false precision</div>
+        <div class="db-d">Know what's confirmed, estimated, or benchmarked.</div>
+      </div>
+      <div class="db-cell">
+        <div class="db-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#00609C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="6" cy="5" r="2.3"/>
+            <circle cx="6" cy="19" r="2.3"/>
+            <circle cx="18" cy="12" r="2.3"/>
+            <path d="M6 7.3v9.4"/>
+            <path d="M6 12h9.7"/>
+          </svg>
+        </div>
+        <div class="db-t">No predetermined<br>answer</div>
+        <div class="db-d">Renewing, staying put, or staying flexible can all be the right answer.</div>
+      </div>
+      <div class="db-cell">
+        <div class="db-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#00609C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="5" cy="19" r="2.2"/><circle cx="19" cy="5" r="2.2"/>
+            <path d="M7 17.5C10 14 13 10 17 6.5"/>
+          </svg>
+        </div>
+        <div class="db-t">Traceable from source to decision</div>
+        <div class="db-d">See where the numbers came from and which assumptions shaped the analysis.</div>
+      </div>
+      <div class="db-cell">
+        <div class="db-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#00609C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="8" cy="8" r="3"/><circle cx="17" cy="8" r="3"/>
+            <path d="M2 20c0-3.5 2.5-6 6-6s6 2.5 6 6"/>
+            <path d="M13.5 14.2c1-.3 2-.2 3 .1 2.2.7 3.5 2.8 3.5 5.7"/>
+          </svg>
+        </div>
+        <div class="db-t">One case across stakeholders</div>
+        <div class="db-d">CRE, Finance, HR, and leadership work from the same underlying analysis.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FAQ ============ -->
+<section class="faq">
+  <div class="wrap faq-grid">
+    <div class="faq-head">
+      <h2>Your questions,<br>answered.</h2>
+    </div>
+    <div class="faq-list">
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="true">
+          <span class="faq-icon" aria-hidden="true"><svg width="12" height="8" viewBox="0 0 12 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 1.5L6 6.5L11 1.5"/></svg></span>
+          <span class="faq-qtext">What data do I need to get started?</span>
+        </button>
+        <div class="faq-a" style="max-height:400px;">
+          <p>If you've transacted through LiquidSpace, your existing activity gives you a head
+             start. Leases and licenses managed elsewhere can be added through a guided intake
+             process, including by uploading existing portfolio data and documents.</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">
+          <span class="faq-icon" aria-hidden="true"><svg width="12" height="8" viewBox="0 0 12 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 1.5L6 6.5L11 1.5"/></svg></span>
+          <span class="faq-qtext">How is this different from our IWMS, broker, or portfolio review process?</span>
+        </button>
+        <div class="faq-a">
+          <p>Workplace Strategist isn't another system of record, and it doesn't replace your
+             advisors. It gives your team a consistent, evidence-based way to evaluate where
+             the portfolio needs attention, where demand supports more commitment, and where
+             more flexibility makes sense, before sourcing, negotiation, or execution begins.</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">
+          <span class="faq-icon" aria-hidden="true"><svg width="12" height="8" viewBox="0 0 12 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 1.5L6 6.5L11 1.5"/></svg></span>
+          <span class="faq-qtext">How does Workplace Strategist use AI?</span>
+        </button>
+        <div class="faq-a">
+          <p>Workplace Strategist uses AI to help synthesize evidence, surface patterns and
+             considerations, and explain what warrants investigation. It works within a
+             structured system built on your portfolio, workforce, booking, utilization,
+             commitment, and market evidence. The underlying inputs, assumptions, uncertainty,
+             and confidence remain visible so your team can evaluate the reasoning behind the
+             analysis.</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">
+          <span class="faq-icon" aria-hidden="true"><svg width="12" height="8" viewBox="0 0 12 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 1.5L6 6.5L11 1.5"/></svg></span>
+          <span class="faq-qtext">Does Workplace Strategist make portfolio decisions for me?</span>
+        </button>
+        <div class="faq-a">
+          <p>No. Workplace Strategist brings the relevant evidence together, surfaces what
+             deserves attention, and helps your team understand what the evidence supports.
+             The decision remains with your real estate team.</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">
+          <span class="faq-icon" aria-hidden="true"><svg width="12" height="8" viewBox="0 0 12 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 1.5L6 6.5L11 1.5"/></svg></span>
+          <span class="faq-qtext">Where do the market costs and benchmarks come from?</span>
+        </button>
+        <div class="faq-a">
+          <p>Workplace Strategist combines your portfolio and activity data with LiquidSpace
+             marketplace data. When evaluating a market or workplace model, it uses comparable
+             spaces and market pricing to provide a real-world basis for cost assumptions,
+             while clearly distinguishing your data from benchmark inputs.</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">
+          <span class="faq-icon" aria-hidden="true"><svg width="12" height="8" viewBox="0 0 12 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 1.5L6 6.5L11 1.5"/></svg></span>
+          <span class="faq-qtext">What happens when the analysis points to a next step?</span>
+        </button>
+        <div class="faq-a">
+          <p>The work doesn't have to start over in another system. When the next step connects
+             to another LiquidSpace capability, the relevant context can carry forward into
+             execution. For example, a supported need for private office can become a sourcing
+             requirement in Transaction Manager.</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">
+          <span class="faq-icon" aria-hidden="true"><svg width="12" height="8" viewBox="0 0 12 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 1.5L6 6.5L11 1.5"/></svg></span>
+          <span class="faq-qtext">How does Workplace Strategist stay current as my portfolio changes?</span>
+        </button>
+        <div class="faq-a">
+          <p>Workplace Strategist gives you a standing view of your portfolio, not a one-time
+             analysis. As demand, utilization, commitments, and other inputs change, you can
+             reevaluate where attention is needed, where commitment makes sense, and whether
+             your current strategy still holds.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============ CLOSE ============ -->
+<section class="close" id="demo">
+  <div class="wrap">
+    <div class="close-eyebrow">Get started</div>
+    <h2>See what's next for your portfolio.</h2>
+    <p>See where to focus, when to commit, and when to flex with Workplace Strategist.</p>
+    <a class="btn light" href="#demo">Get a demo</a>
+  </div>
+</section>
+
+<footer class="foot">
+  <div class="wrap">
+    <span>© LiquidSpace, 2026</span>
+    <span>Portfolio Strategy · Workspace Access · Workplace Operations</span>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var items = document.querySelectorAll('.faq-item');
+  items.forEach(function(item){
+    var btn = item.querySelector('.faq-q');
+    var panel = item.querySelector('.faq-a');
+    if (btn.getAttribute('aria-expanded') === 'true'){
+      panel.style.maxHeight = panel.scrollHeight + 'px';
+    }
+    btn.addEventListener('click', function(){
+      var open = btn.getAttribute('aria-expanded') === 'true';
+      btn.setAttribute('aria-expanded', open ? 'false' : 'true');
+      panel.style.maxHeight = open ? '0px' : panel.scrollHeight + 'px';
+    });
+  });
+})();
+</script>
+</body>
+</html>
